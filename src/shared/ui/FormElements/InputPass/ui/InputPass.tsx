@@ -31,6 +31,7 @@ export const InputPass = ({
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <>
                         <OutlinedInput
+                            error={Boolean(error)}
                             size={size}
                             value={value}
                             onChange={onChange}

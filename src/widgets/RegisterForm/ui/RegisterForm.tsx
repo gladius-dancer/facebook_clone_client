@@ -3,13 +3,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import { InputText } from 'shared/ui/FormElements/InputText/ui/InputText';
 import { InputPass } from 'shared/ui/FormElements/InputPass/ui/InputPass';
 import { Dropdown } from 'shared/ui/FormElements/Dropdown/ui/Dropdown';
-import { InputRadioStart } from 'shared/ui/FormElements/RadioStart/ui/RadioStart';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import React, { useState } from 'react';
+import React from 'react';
 import { useRegisterForm } from 'widgets/RegisterForm/lib/useRegisterForm';
 import RadioGroupComponent from 'shared/ui/FormElements/RadioGroup/ui/RadioGroup';
-import { FormHelperText } from '@mui/material';
 import cls from './RegisterForm.module.scss';
 
 interface Props {
@@ -85,12 +83,12 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                 </div>
 
                 <InputText
-                    key="telephone"
-                    name="telephone"
+                    key="email"
+                    name="email"
                     label=""
                     control={control}
                     status
-                    placeholder="Номер мобильного телефона или эл. адрес"
+                    placeholder="Эл. адрес"
                     size="small"
                 />
                 <InputPass
@@ -129,11 +127,11 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                 </div>
                 <p className="form-title">Пол</p>
                 <div className="d-flex justify-content-between gap-2 me-3">
-
                     <RadioGroupComponent
                         name="gender"
                         items={gender}
                         className={cls.modalRadioGroup}
+                        control={control}
                     />
                 </div>
                 <div className="register-info">

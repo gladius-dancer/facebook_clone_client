@@ -12,7 +12,6 @@ export const Dropdown = ({
     label,
     options,
     size,
-    error,
 }: DropdownType) => {
     const generateSingleOptions = () => options.map((option: any) => (
         <MenuItem key={key} value={option}>
@@ -21,19 +20,23 @@ export const Dropdown = ({
     ));
 
     return (
-        <FormControl sx={{ m: 0, minWidth: 110 }} error={error}>
+        <FormControl sx={{ m: 0, minWidth: 110 }}>
             <InputLabel>{label}</InputLabel>
             <Controller
                 defaultValue=""
-                render={({ field: { onChange, value } }) => (
-                    <Select onChange={onChange} value={value} size={size}>
-                        {generateSingleOptions()}
-                    </Select>
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                    <>
+                        <Select onChange={onChange} value={value} size={size} error={Boolean(error)}>
+                            {generateSingleOptions()}
+                        </Select>
+                        <FormHelperText error>{error ? error.message : null}</FormHelperText>
+                    </>
+
                 )}
                 control={control}
                 name={name}
             />
-            <FormHelperText>Error</FormHelperText>
+
         </FormControl>
     );
 };

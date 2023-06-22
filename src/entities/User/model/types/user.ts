@@ -1,6 +1,10 @@
 export interface User {
-    id: string;
-    username: string;
+    accessToken: string
+    user: {
+        id: string;
+        username: string;
+    }
+
 }
 
 export interface UserSchema {
