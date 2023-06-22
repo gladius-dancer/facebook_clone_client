@@ -2,7 +2,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import React, { useCallback, useState } from 'react';
 import { Btn, ButtonTheme } from 'shared/ui/Button/Button';
-import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
 import cls from './Navbar.module.scss';
@@ -52,10 +51,6 @@ export const Navbar = ({ className }: NavbarProps) => {
             >
                 {t('Войти')}
             </Btn>
-            <LoginModal
-                isOpen={isAuthModal}
-                onClose={onCloseModal}
-            />
         </div>
     );
 };

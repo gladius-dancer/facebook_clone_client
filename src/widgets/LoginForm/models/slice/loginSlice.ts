@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RegisterSchema } from '../types/loginSchema';
+import { LoginFormType } from '../types/loginSchema';
 import { registerService } from '../services/registerService';
 
-const initialState: RegisterSchema = {
+const initialState: LoginFormType = {
     isLoading: false,
     user: { email: null, id: null },
     message: null,
     error: null,
 };
-export const registerSlice = createSlice({
+export const loginSlice = createSlice({
     name: 'register',
     initialState,
     reducers: {
@@ -32,5 +32,5 @@ export const registerSlice = createSlice({
     },
 });
 
-export const { actions: registerActions } = registerSlice;
-export const { reducer: registerReducer } = registerSlice;
+export const { actions: registerActions } = loginSlice;
+export const { reducer: registerReducer } = loginSlice;

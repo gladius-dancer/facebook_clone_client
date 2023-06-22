@@ -16,9 +16,6 @@ const AuthPage = ({ className }:Props) => {
     const toggleModal = () => {
         setModal(!modal);
     };
-
-    // const date = useAppSelector((state) => state.dateReduser);
-
     return (
         <>
             <div className={classNames(cls.AuthPage, {}, [])}>

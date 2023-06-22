@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginByUsername } from 'features/AuthByUsername/model/services/loginByUsername/loginByUsername';
 import { useDispatch } from 'react-redux';
 import { registerService } from 'widgets/RegisterForm/models/services/registerService';
 import { RegisterFormData } from '../models/types/registerFormData';
