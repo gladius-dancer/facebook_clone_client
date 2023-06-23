@@ -1,3 +1,3 @@
-import { RegisterForm } from './ui/RegisterForm';
-
-export default RegisterForm;
+export { RegisterForm } from './ui/RegisterForm';
+export { registerActions, registerReducer } from './models/slice/registerSlice';
+export { RegisterSchema } from './models/types/registerSchema';

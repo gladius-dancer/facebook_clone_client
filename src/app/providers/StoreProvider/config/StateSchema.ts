@@ -1,5 +1,8 @@
-import { UserSchema } from 'entities/User';
+import { PageLoaderScheme } from 'shared/ui/PageLoader';
+import { RegisterSchema } from 'widgets/RegisterForm';
 
 export interface StateSchema {
-    user: UserSchema;
+    loader: PageLoaderScheme,
+    register: RegisterSchema,
+
 }

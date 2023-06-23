@@ -1,7 +1,13 @@
 .PageLoader {
-    min-height: calc(100vh - var(--navbar-height));
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    min-width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    bg-color: var(--inverted-bg-color);
 }

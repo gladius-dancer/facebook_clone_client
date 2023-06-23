@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import Logo from 'shared/assets/icons/facebook.svg';
 import React, { useState } from 'react';
 import { ModalComponent } from 'widgets/ModalComponent/ui/ModalComponent';
-import RegisterForm from 'widgets/RegisterForm';
+import { RegisterForm } from 'widgets/RegisterForm';
 import LoginForm from 'widgets/LoginForm';
 import cls from './AuthPage.module.scss';
 

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LoginFormType } from '../types/loginSchema';
-import { registerService } from '../services/registerService';
+import { loginService } from '../services/loginService';
 
 const initialState: LoginFormType = {
     isLoading: false,
@@ -18,14 +18,14 @@ export const loginSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(registerService.pending, (state) => {
+            .addCase(loginService.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(registerService.fulfilled, (state, action) => {
+            .addCase(loginService.fulfilled, (state, action) => {
                 state.isLoading = false;
             })
-            .addCase(registerService.rejected, (state, action) => {
+            .addCase(loginService.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

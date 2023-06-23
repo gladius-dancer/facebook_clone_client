@@ -4,6 +4,7 @@ import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { useDispatch } from 'react-redux';
 import Modal from 'react-modal';
+import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
 
 Modal.setAppElement('#root');
 function App() {

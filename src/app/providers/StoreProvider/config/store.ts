@@ -1,10 +1,12 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
-import { userReducer } from 'entities/User';
+import { loaderReducer } from 'shared/ui/PageLoader';
+import { registerReducer } from 'widgets/RegisterForm';
 import { StateSchema } from './StateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {
     const rootReducers: ReducersMapObject<StateSchema> = {
-        user: userReducer,
+        loader: loaderReducer,
+        register: registerReducer,
     };
 
     return configureStore<StateSchema>({
