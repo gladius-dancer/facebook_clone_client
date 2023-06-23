@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoginFormType } from '../types/loginSchema';
+import { LoginSchema } from '../types/loginSchema';
 import { loginService } from '../services/loginService';
 
-const initialState: LoginFormType = {
+const initialState: LoginSchema = {
     isLoading: false,
     user: { email: null, id: null },
     message: null,
