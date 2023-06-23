@@ -4,17 +4,12 @@ import { registerService } from '../services/registerService';
 
 const initialState: RegisterSchema = {
     isLoading: false,
-    user: { email: null, id: null },
-    message: null,
     error: null,
 };
 export const registerSlice = createSlice({
     name: 'register',
     initialState,
     reducers: {
-        setUsername: (state, action: PayloadAction<string>) => {
-
-        },
     },
     extraReducers: (builder) => {
         builder

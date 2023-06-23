@@ -27,7 +27,6 @@ export const useRegisterForm = () => {
         formState: { errors },
     } = methods;
     const onSubmit = (data: RegisterFormData) => {
-        // console.log(data);
         dispatch(registerService({ ...data, date: `${data?.day} ${data?.month} ${data?.year}` }));
     };
 
