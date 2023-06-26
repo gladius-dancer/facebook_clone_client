@@ -12,7 +12,10 @@ export const loginSlice = createSlice({
     name: 'register',
     initialState,
     reducers: {
-        setUsername: (state, action: PayloadAction<string>) => {
+        setUser: (state, action: PayloadAction<LoginSchema>) => {
+            state.user = action.payload.user;
+        },
+        logout: (state, action: PayloadAction<string>) => {
 
         },
     },
@@ -32,5 +35,5 @@ export const loginSlice = createSlice({
     },
 });
 
-export const { actions: registerActions } = loginSlice;
-export const { reducer: registerReducer } = loginSlice;
+export const { actions: loginActions } = loginSlice;
+export const { reducer: loginReducer } = loginSlice;

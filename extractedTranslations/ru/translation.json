@@ -1,9 +1,13 @@
 {
+  "Friends page": "Friends page",
+  "Games page": "Games page",
+  "Groups page": "Groups page",
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit": {
     " Aliquid commodi consequatur eligendi impedit incidunt necessitatibus possimus quis saepe sunt totam": {
       "": ""
     }
   },
+  "Marketplace page": "Marketplace page",
   "decrement": "decrement",
   "increment": "increment",
   "throw error": "throw error",

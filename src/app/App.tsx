@@ -17,11 +17,9 @@ function App() {
     return (
         <div className={classNames('app', {}, [theme])}>
             <Suspense fallback="">
-                <div className="content-page">
-                    <AppRouter />
-                    { loader && <PageLoader /> }
-                    <NotifiComponent />
-                </div>
+                <AppRouter />
+                { loader && <PageLoader /> }
+                <NotifiComponent />
             </Suspense>
         </div>
     );

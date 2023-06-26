@@ -14,11 +14,6 @@ interface Props {
     className?: string;
     setModal?: any;
 }
-interface DateState {
-    day: string[];
-    month: string[];
-    year: string[];
-}
 
 const gender = [{
     label: 'Мужской',
@@ -33,12 +28,6 @@ const gender = [{
 export const RegisterForm = ({ className, setModal }:Props) => {
     const { t } = useTranslation();
 
-    const date:DateState = {
-        day: ['1', '2', '3', '4'],
-        month: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май'],
-        year: ['1990', '1991', '1992'],
-    };
-
     const {
         onSubmit,
         control,
@@ -46,9 +35,8 @@ export const RegisterForm = ({ className, setModal }:Props) => {
         watch,
         setValue,
         errors,
+        date,
     } = useRegisterForm();
-
-    console.log(errors);
 
     return (
         <>

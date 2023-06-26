@@ -4,7 +4,7 @@ import Logo from 'shared/assets/icons/facebook.svg';
 import React, { useState } from 'react';
 import { ModalComponent } from 'widgets/ModalComponent/ui/ModalComponent';
 import { RegisterForm } from 'widgets/RegisterForm';
-import LoginForm from 'widgets/LoginForm';
+import { LoginForm } from 'widgets/LoginForm';
 import cls from './AuthPage.module.scss';
 
 interface Props {

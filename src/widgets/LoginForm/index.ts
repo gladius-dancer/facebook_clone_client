@@ -1,3 +1,4 @@
-import { LoginForm } from './ui/LoginForm';
+export { LoginForm } from './ui/LoginForm';
+export { loginReducer } from './models/slice/loginSlice';
 
-export default LoginForm;
+export { LoginSchema } from './models/types/loginSchema';

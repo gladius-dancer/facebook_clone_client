@@ -3,17 +3,27 @@ import { MainPage } from 'pages/MainPage';
 import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { AuthPage } from 'pages/AuthPage';
+import { FriendsPage } from 'pages/FriendsPage';
+import { MarketplacePage } from 'pages/MarketplacePage';
+import { GroupsPage } from 'pages/GroupsPage';
+import { GamesPage } from 'pages/GamesPage';
 
 export enum AppRoutes {
     MAIN = 'main',
-    ABOUT = 'about',
+    FRIENDS = 'friends',
+    MARKETPLACE = 'marketplace',
+    GROUPS = 'groups',
+    GAMES = 'games',
     AUTH = 'auth',
     NOT_FOUND = 'not_found',
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
-    [AppRoutes.ABOUT]: '/about',
+    [AppRoutes.FRIENDS]: '/friends',
+    [AppRoutes.MARKETPLACE]: '/marketplace',
+    [AppRoutes.GROUPS]: '/groups',
+    [AppRoutes.GAMES]: '/games',
     [AppRoutes.AUTH]: '/auth',
     // последний
     [AppRoutes.NOT_FOUND]: '*',
@@ -24,9 +34,21 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
         path: RoutePath.main,
         element: <MainPage />,
     },
-    [AppRoutes.ABOUT]: {
-        path: RoutePath.about,
-        element: <AboutPage />,
+    [AppRoutes.FRIENDS]: {
+        path: RoutePath.friends,
+        element: <FriendsPage />,
+    },
+    [AppRoutes.MARKETPLACE]: {
+        path: RoutePath.marketplace,
+        element: <MarketplacePage />,
+    },
+    [AppRoutes.GROUPS]: {
+        path: RoutePath.groups,
+        element: <GroupsPage />,
+    },
+    [AppRoutes.GAMES]: {
+        path: RoutePath.games,
+        element: <GamesPage />,
     },
     [AppRoutes.AUTH]: {
         path: RoutePath.auth,

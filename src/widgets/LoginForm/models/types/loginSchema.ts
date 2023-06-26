@@ -1,6 +1,6 @@
 export type LoginSchema = {
     isLoading: boolean,
-    user: { email: string | null, id: string | null },
+    user: { email: string | null, id: string | null},
     message: string | null,
     error: string | null,
 }

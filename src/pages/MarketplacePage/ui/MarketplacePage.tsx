@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from 'widgets/Navbar';
 
-const MainPage = () => {
+const MarketplacePage = () => {
     const { t } = useTranslation();
     const [value, setValue] = useState('');
 
@@ -13,9 +13,9 @@ const MainPage = () => {
     return (
         <div>
             <Navbar />
-            {t('Главная страница')}
+            {t('Marketplace page')}
         </div>
     );
 };
 
-export default MainPage;
+export default MarketplacePage;

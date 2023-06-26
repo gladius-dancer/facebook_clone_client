@@ -1,8 +1,9 @@
 export interface User {
-    accessToken: string
+    accessToken: string;
+
     user: {
         id: string;
-        username: string;
+        email: string;
     }
 
 }

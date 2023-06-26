@@ -1,21 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { User } from 'entities/User';
 import { CURRENT_USER_KEY, USER_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
-import { RegisterFormData } from 'widgets/RegisterForm/models/types/registerFormData';
 import { loaderActions } from 'shared/ui/PageLoader';
 import { Notification } from 'shared/ui/Notifications/lib/Notification';
 import { LoginFormType } from 'widgets/LoginForm/models/types/loginSchema';
 
-export const loginService = createAsyncThunk<User, LoginFormType, { rejectValue: string }>(
-    'register',
+export const AuthProviderService = createAsyncThunk<LoginFormType, { rejectValue: string }>(
+    'auth',
     async (data, thunkAPI) => {
         try {
             thunkAPI.dispatch(loaderActions.onOffLoader(true));
-            const response = await axios.post<User>('https://facebook-server-sage.vercel.app/api/login', data);
+            const response = await axios.get('https://facebook-server-sage.vercel.app/api/refresh');
             localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data.accessToken));
             localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(response.data.user));
-            new Notification().showSuccess('User successfully logined!');
             thunkAPI.dispatch(loaderActions.onOffLoader(false));
             return response.data;
         } catch (e) {
