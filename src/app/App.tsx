@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import { PageLoader } from 'shared/ui/PageLoader/ui/PageLoader';
 import { getPageLoader } from 'shared/ui/PageLoader/selector/GetPageLoader';
 import { NotifiComponent } from 'shared/ui/Notifications/ui/NotifiComponent';
+import { postsActions } from 'features/Posts/models/slices/PostSlice';
 
 Modal.setAppElement('#root');
 function App() {
@@ -24,5 +25,4 @@ function App() {
         </div>
     );
 }
-
 export default App;

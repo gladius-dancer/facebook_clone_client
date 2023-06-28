@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { Sidebar } from 'widgets/Sidebar/ui/Sidebar/Sidebar';
+import { LeftSidebar } from 'widgets/LeftSidebar/ui/LeftSidebar';
 import {
     renderWithTranslation,
 } from 'shared/lib/tests/renderWithTranslation/renderWithTranslation';
@@ -7,12 +7,12 @@ import { componentRender } from 'shared/lib/tests/componentRender/componentRende
 
 describe('Sidebar', () => {
     test('with only first param', () => {
-        componentRender(<Sidebar />);
+        componentRender(<LeftSidebar />);
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
     });
 
     test('test toggle', () => {
-        componentRender(<Sidebar />);
+        componentRender(<LeftSidebar />);
         const toggleBtn = screen.getByTestId('sidebar-toggle');
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
         fireEvent.click(toggleBtn);

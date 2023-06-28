@@ -1,6 +1,5 @@
-import {classNames} from 'shared/lib/classNames/classNames';
-import {ButtonHTMLAttributes, FC} from 'react';
-import Button from '@mui/material/Button';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { ButtonHTMLAttributes, FC } from 'react';
 import cls from './Button.module.scss';
 
 export enum ButtonTheme {
@@ -10,13 +9,11 @@ export enum ButtonTheme {
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted',
 }
-
 export enum ButtonSize {
     M = 'size_m',
     L = 'size_l',
     XL = 'size_xl',
 }
-
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
     theme?: ButtonTheme;
@@ -24,7 +21,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: ButtonSize;
     disabled?: boolean;
 }
-
 export const Btn: FC<ButtonProps> = (props) => {
     const {
         className,
@@ -44,7 +40,6 @@ export const Btn: FC<ButtonProps> = (props) => {
     };
 
     return (
-
         <button
             type="button"
             className={classNames(cls.Button, mods, [className])}
@@ -53,6 +48,5 @@ export const Btn: FC<ButtonProps> = (props) => {
         >
             {children}
         </button>
-
     );
 };

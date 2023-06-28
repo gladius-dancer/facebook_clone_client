@@ -1,0 +1,33 @@
+.PostItem{
+  width: 100%;
+  background: var(--nav-bg-color);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.PostItemHeader{
+  display: flex;
+  color: #ffffff;
+}
+
+.PostItemButtons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+
+  button{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+  }
+}
+
+.PostItemBodyText{
+  color: #ffffff;
+}
+
+.Like{
+  color: #2374E1!important;
+}

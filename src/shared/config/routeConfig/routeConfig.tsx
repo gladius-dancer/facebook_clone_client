@@ -1,6 +1,5 @@
 import { RouteProps } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
-import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { AuthPage } from 'pages/AuthPage';
 import { FriendsPage } from 'pages/FriendsPage';
@@ -25,7 +24,6 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.GROUPS]: '/groups',
     [AppRoutes.GAMES]: '/games',
     [AppRoutes.AUTH]: '/auth',
-    // последний
     [AppRoutes.NOT_FOUND]: '*',
 };
 
