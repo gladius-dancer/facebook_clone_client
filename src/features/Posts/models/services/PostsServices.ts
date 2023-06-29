@@ -13,9 +13,15 @@ export const PostsService = createAsyncThunk<PostSchema[]>(
             const headers = {
                 Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
             };
+
             const response = await axios.get(
                 'https://facebook-server-sage.vercel.app/api/posts',
-                { headers },
+                {
+                    headers,
+                    params: {
+                        userId: JSON.parse(localStorage.getItem('user')).id,
+                    },
+                },
             );
             thunkAPI.dispatch(postsActions.setPosts({ posts: response.data }));
             thunkAPI.dispatch(loaderActions.onOffLoader(false));

@@ -21,18 +21,15 @@ export const PostItem = ({ className, post }: Props) => {
                 <img src="" alt="" />
                 <div className={cls.PostItemHeaderInner}>
                     <h3>User</h3>
-                    <p>28.06.2023</p>
+                    <span>{new Date(post.date).toLocaleDateString()}</span>
+                    <span> в </span>
+                    <span>{new Date(post.date).toLocaleTimeString()}</span>
                 </div>
 
             </div>
             <div className={cls.PostItemBody}>
                 <p className={cls.PostItemBodyText}>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    {post.text}
                 </p>
                 <img src="" alt="" />
                 <ul className={cls.PostItemButtons}>
