@@ -19,7 +19,7 @@ export const PostsService = createAsyncThunk<PostSchema[]>(
                 {
                     headers,
                     params: {
-                        userId: JSON.parse(localStorage.getItem('user')).id,
+                        user_id: JSON.parse(localStorage.getItem('user')).id,
                     },
                 },
             );
