@@ -10,6 +10,7 @@
 
 .modalHeaderTitle{
   font-size: 32px;
+  padding-bottom: 20px;
 }
 
 .modalSubHeader{
@@ -18,16 +19,16 @@
 
 
 .modalClose{
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  position: absolute!important;
+  top: 10px;
+  right: 12px;
 }
 
 .modalForm{
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 30px;
+  padding-top: 30px;
   max-width: 432px;
 }
 
@@ -49,6 +50,14 @@
   gap: 20px;
 }
 
+.multiLine{
+  &:hover{
+    outline: none!important;
+    border: none!important;
+  }
+
+}
+
 .fileInput{
   width: 100%;
   label{
@@ -57,12 +66,19 @@
     width: 100%;
     background: var(--nav-bg-color);
     border-radius: 10px;
-    color: var(--bg-color);
+    color: var(--body-text);
     display: flex;
     justify-content: center;
     align-items: center;
+    &:hover{
+      background: var(--tab-item-hover);
+    }
   }
   input{
     display: none;
   }
+}
+
+.publishButton{
+  padding: 15px 0!important;
 }

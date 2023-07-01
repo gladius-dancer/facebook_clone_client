@@ -10,5 +10,6 @@ export interface InputTextType {
   label?: string;
   checked?: boolean;
   onChange?: any;
-  register: any
+  register: any,
+  fileName: any
 }

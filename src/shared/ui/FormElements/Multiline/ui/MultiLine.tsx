@@ -9,8 +9,9 @@ export const MultiLine = ({
     control,
     error,
     label,
-    onChange,
     size,
+    placeholder,
+    className
 }: MultilineType) => (
     <Controller
         key={key}
@@ -20,7 +21,6 @@ export const MultiLine = ({
         render={({
             field: { onChange, value },
             fieldState: { error },
-            formState,
         }) => (
             <TextField
                 helperText={error ? error.message : null}
@@ -33,6 +33,8 @@ export const MultiLine = ({
                 variant="outlined"
                 multiline
                 rows={3}
+                placeholder={placeholder}
+                className={className}
             />
         )}
     />

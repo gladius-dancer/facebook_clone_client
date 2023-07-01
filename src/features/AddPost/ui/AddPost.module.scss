@@ -11,9 +11,9 @@
 .AddPostArea{
   height: 35px;
   width: 100%;
-  background: var(--nav-inner-bg-color);
+  background: var(--page-bg-color);
   border-radius: 30px;
-  color: #ffffff;
+  color: var(--nav-inner-bg-color);
   display: flex;
   align-items: center;
   padding: 20px;

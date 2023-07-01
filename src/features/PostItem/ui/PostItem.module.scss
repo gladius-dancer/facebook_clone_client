@@ -7,7 +7,7 @@
 
 .PostItemHeader{
   display: flex;
-  color: #ffffff;
+  color: var(--body-text);
 }
 
 .PostItemButtons{
@@ -20,12 +20,12 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #ffffff;
+    color: var(--body-text);
   }
 }
 
 .PostItemBodyText{
-  color: #ffffff;
+  color: var(--body-text);
 }
 
 .PostMedia{
@@ -35,5 +35,5 @@
 }
 
 .Like{
-  color: #2374E1!important;
+  color: var(--tab-item-active)!important;
 }

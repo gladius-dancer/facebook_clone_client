@@ -8,26 +8,26 @@ export const InputFile = ({
                               name,
                               control,
                               className,
-                              register
+                              register,
+                              fileName
                           }: InputTextType) => (
         <Controller
             key={key}
             name={name}
             control={control}
             defaultValue=""
-            render={({field: {onChange, value}, fieldState: {error}}) => (
+            render={({field: {onChange}, fieldState: {error}}) => (
                 <div className={className}>
                     <InputLabel htmlFor="file">
-                        Выберите файл
+                        {fileName?.[0]?.name?.length > 0 ? fileName?.[0]?.name : "Выберите файл"}
                     </InputLabel>
                     <Input
                         type="file"
                         id="file"
-                        // value={value}
                         onChange={onChange}
                         {...register("file")}
                     />
-                    {/*<span>{value.slice(12, value.length)}</span>*/}
+                    <span></span>
                 </div>
             )}
 

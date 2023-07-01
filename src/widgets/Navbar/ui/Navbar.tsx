@@ -12,6 +12,11 @@ import AppsIcon from '@mui/icons-material/Apps';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
+import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
+import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlined';
 import { Input } from 'shared/ui/Input/Input';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
@@ -43,35 +48,35 @@ export const Navbar = ({ className }: NavbarProps) => {
                     to={RoutePath.main}
                     className={classnames(cls.item, cls.TabItem, currentTab === '/' ? cls.TabItemActive : '')}
                 >
-                    <HomeIcon fontSize="medium" className={cls.TabIcon} />
+                    <HomeOutlinedIcon fontSize="medium" className={cls.TabIcon} />
                 </AppLink>
                 <AppLink
                     theme={AppLinkTheme.SECONDARY}
                     to={RoutePath.friends}
                     className={classnames(cls.item, cls.TabItem, currentTab === '/friends' ? cls.TabItemActive : '')}
                 >
-                    <PeopleIcon fontSize="medium" className={cls.TabIcon} />
+                    <PeopleAltOutlinedIcon fontSize="medium" className={cls.TabIcon} />
                 </AppLink>
                 <AppLink
                     theme={AppLinkTheme.SECONDARY}
                     to={RoutePath.marketplace}
                     className={classnames(cls.item, cls.TabItem, currentTab === '/marketplace' ? cls.TabItemActive : '')}
                 >
-                    <StoreIcon fontSize="medium" className={cls.TabIcon} />
+                    <StoreOutlinedIcon fontSize="medium" className={cls.TabIcon} />
                 </AppLink>
                 <AppLink
                     theme={AppLinkTheme.SECONDARY}
                     to={RoutePath.groups}
                     className={classnames(cls.item, cls.TabItem, currentTab === '/groups' ? cls.TabItemActive : '')}
                 >
-                    <GroupsIcon fontSize="medium" className={cls.TabIcon} />
+                    <GroupsOutlinedIcon fontSize="medium" className={cls.TabIcon} />
                 </AppLink>
                 <AppLink
                     theme={AppLinkTheme.SECONDARY}
                     to={RoutePath.games}
                     className={classnames(cls.item, cls.TabItem, currentTab === '/games' ? cls.TabItemActive : '')}
                 >
-                    <VideogameAssetIcon fontSize="medium" className={cls.TabIcon} />
+                    <VideogameAssetOutlinedIcon fontSize="medium" className={cls.TabIcon} />
                 </AppLink>
             </div>
             <ul className={cls.NavbarRight}>

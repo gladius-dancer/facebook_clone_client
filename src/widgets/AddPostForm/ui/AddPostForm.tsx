@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { useAddPostForm } from 'widgets/AddPostForm/lib/useAddPostForm';
 import { InputFile } from 'shared/ui/FormElements/InputFile/ui/InputFile';
 import { MultiLine } from 'shared/ui/FormElements/Multiline/ui/MultiLine';
+import IconButton from "@mui/material/IconButton";
 
 interface Props {
     className?: string;
@@ -19,16 +20,20 @@ export const AddPostForm = ({ className, setModal }:Props) => {
         onSubmit,
         control,
         handleSubmit,
-        register
+        register,
+        watch,
+        fileName
     } = useAddPostForm();
 
     return (
         <>
             <div className={cls.modalHeader}>
-                <CloseIcon
-                    className={cls.modalClose}
-                    onClick={() => setModal()}
-                />
+                <IconButton className={cls.modalClose}>
+                    <CloseIcon
+                        onClick={() => setModal()}
+                    />
+                </IconButton>
+
                 <h2 className={cls.modalHeaderTitle}>Создать публикацию</h2>
 
             </div>
@@ -38,6 +43,8 @@ export const AddPostForm = ({ className, setModal }:Props) => {
                     name="text"
                     label=""
                     control={control}
+                    placeholder="Что у вас нового?"
+                    className={cls.multiLine}
                 />
                 <InputFile
                     key="file"
@@ -45,10 +52,11 @@ export const AddPostForm = ({ className, setModal }:Props) => {
                     control={control}
                     className={cls.fileInput}
                     register={register}
+                    fileName = {fileName}
                 />
                 <Button
                     type="submit"
-                    className="register-button text-capitalize fs-6 fw-bold pt-1 pb-1 ms-auto me-auto w-50"
+                    className={cls.publishButton}
                     size="small"
                     variant="contained"
                 >

@@ -23,6 +23,9 @@ export const useAddPostForm = () => {
         formState: { errors },
         register
     } = methods;
+
+    const fileName = watch("file");
+
     const onSubmit = (data: AddPostSchema) => {
         const formData: FormData  = new FormData();
         formData.append('file', data.file[0]);
@@ -37,6 +40,7 @@ export const useAddPostForm = () => {
         setValue,
         watch,
         errors,
-        register
+        register,
+        fileName
     };
 };
