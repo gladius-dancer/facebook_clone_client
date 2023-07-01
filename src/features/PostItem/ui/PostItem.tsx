@@ -20,18 +20,22 @@ export const PostItem = ({ className, post }: Props) => {
                 <img src="" alt="" />
                 <img src="" alt="" />
                 <div className={cls.PostItemHeaderInner}>
-                    <h3>User</h3>
+                    <h3>{post.user.firstName}</h3>
                     <span>{new Date(post.date).toLocaleDateString()}</span>
                     <span> в </span>
                     <span>{new Date(post.date).toLocaleTimeString()}</span>
                 </div>
-
             </div>
             <div className={cls.PostItemBody}>
                 <p className={cls.PostItemBodyText}>
                     {post.text}
                 </p>
-                <img src="" alt="" />
+
+                {
+                    post.type === 'video/mp4'
+                        ? <video className={cls.PostMedia} src={post.pathToFile} controls />
+                        : <img className={cls.PostMedia} src={post.pathToFile} alt="" />
+                }
                 <ul className={cls.PostItemButtons}>
                     <li>
                         <Btn theme={ButtonTheme.CLEAR} className={cls.Like}>

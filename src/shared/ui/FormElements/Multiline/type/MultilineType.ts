@@ -5,5 +5,5 @@ export interface MultilineType {
   error?: string;
   label?: string;
   onChange?: any;
-  size: 'small' | 'medium' | undefined;
+  size?: 'small' | 'medium' | undefined;
 }

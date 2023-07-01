@@ -26,7 +26,7 @@ export const Posts = ({ className }:Props) => {
         <div className={classNames(styles.Posts, {}, [className])}>
             <AddPost showModal={toggleModal} />
             {posts.posts.map((post) => (
-                <PostItem key={post.post_id} post={post} />
+                <PostItem key={post._id} post={post} />
             ))}
             <ModalComponent isOpen={modal}><AddPostForm setModal={() => toggleModal()} /></ModalComponent>
         </div>

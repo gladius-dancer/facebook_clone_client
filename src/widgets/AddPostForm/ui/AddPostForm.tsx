@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next';
 import cls from 'widgets/RegisterForm/ui/RegisterForm.module.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
-import { InputText } from 'shared/ui/FormElements/InputText/ui/InputText';
 import Button from '@mui/material/Button';
 import { useAddPostForm } from 'widgets/AddPostForm/lib/useAddPostForm';
 import { InputFile } from 'shared/ui/FormElements/InputFile/ui/InputFile';
+import { MultiLine } from 'shared/ui/FormElements/Multiline/ui/MultiLine';
 
 interface Props {
     className?: string;
@@ -19,9 +19,7 @@ export const AddPostForm = ({ className, setModal }:Props) => {
         onSubmit,
         control,
         handleSubmit,
-        watch,
-        setValue,
-        errors,
+        register
     } = useAddPostForm();
 
     return (
@@ -35,18 +33,18 @@ export const AddPostForm = ({ className, setModal }:Props) => {
 
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className={cls.modalForm}>
-                <InputText
+                <MultiLine
                     key="text"
                     name="text"
                     label=""
                     control={control}
-                    status
                 />
                 <InputFile
                     key="file"
                     name="file"
                     control={control}
-                    status
+                    className={cls.fileInput}
+                    register={register}
                 />
                 <Button
                     type="submit"

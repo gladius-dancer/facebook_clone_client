@@ -2,34 +2,36 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { loaderActions } from 'shared/ui/PageLoader';
 import { Notification } from 'shared/ui/Notifications/lib/Notification';
-import { PostSchema } from '../types/PostSchema';
-import { postsActions } from '../slices/PostSlice';
+import { AddPostSchema } from 'widgets/AddPostForm';
 
-export const PostsService = createAsyncThunk<PostSchema[]>(
-    'posts',
+export const AddPostService = createAsyncThunk<AddPostSchema, FormData , { rejectValue: string }>(
+    'addPost',
     async (data, thunkAPI) => {
         try {
             thunkAPI.dispatch(loaderActions.onOffLoader(true));
-            const headers = {
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
-            };
-
-            const response = await axios.get(
-                'https://facebook-server-sage.vercel.app/api/posts',
+            const response = await axios.post(
+                // 'https://facebook-server-sage.vercel.app/api/add-post',
+                'http://localhost:6060/api/add-post',
+                data,
                 {
-                    headers,
+                    headers: {
+                        Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+                        'Content-Type': 'multipart/form-data',
+                    },
                     params: {
                         userId: JSON.parse(localStorage.getItem('user')).id,
                     },
                 },
             );
-            thunkAPI.dispatch(postsActions.setPosts({ posts: response.data }));
+            new Notification().showSuccess('Post successfully added!');
             thunkAPI.dispatch(loaderActions.onOffLoader(false));
             return response.data;
-        } catch (e) {
+        } catch
+        (e) {
             new Notification().showError(e.message);
             thunkAPI.dispatch(loaderActions.onOffLoader(false));
             return thunkAPI.rejectWithValue('error');
         }
-    },
+    }
+    ,
 );

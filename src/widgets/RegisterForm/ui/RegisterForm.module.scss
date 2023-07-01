@@ -48,3 +48,21 @@
   flex-direction: row!important;
   gap: 20px;
 }
+
+.fileInput{
+  width: 100%;
+  label{
+    display: block;
+    height: 100px;
+    width: 100%;
+    background: var(--nav-bg-color);
+    border-radius: 10px;
+    color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  input{
+    display: none;
+  }
+}

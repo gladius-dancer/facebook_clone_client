@@ -55,6 +55,13 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
         'no-param-reassign': 'off',
+        "rules": {
+            "jsx-a11y/media-has-caption": [ 2, {
+                "audio": [ "Audio" ],
+                "video": [ "Video" ],
+                "track": [ "Track" ],
+            }],
+        }
     },
     globals: {
         __IS_DEV__: true,

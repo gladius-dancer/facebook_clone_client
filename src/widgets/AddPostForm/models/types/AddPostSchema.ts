@@ -1,4 +1,4 @@
-export type AddPostType = {
+export type AddPostSchema = {
     text: string;
     file: FileList;
 

@@ -1,7 +1,18 @@
-import { toast } from 'react-toastify';
+import { Theme, toast, ToastPosition } from 'react-toastify';
+
+type Props = {
+    position: ToastPosition,
+    autoClose: number,
+    hideProgressBar: boolean,
+    closeOnClick: boolean,
+    pauseOnHover: boolean,
+    draggable: boolean,
+    progress: string | undefined,
+    theme: Theme,
+};
 
 export class Notification {
-    properties: any;
+    properties: Props;
 
     constructor() {
         this.properties = {

@@ -2,13 +2,16 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
-import { AddPostType } from '../models/types/AddPostsType';
+import { AddPostService } from 'widgets/AddPostForm';
+import { AddPostSchema } from '../models/types/AddPostSchema';
 
 export const useAddPostForm = () => {
     const dispatch = useDispatch();
 
     const schema = yup.object().shape({
-        text: yup.string().required('Name is required!'),
+        text: yup.string().required('Post text is required!'),
+        file: yup.mixed()
+            .required("Required")
     });
 
     const methods = useForm({ resolver: yupResolver(schema) });
@@ -18,10 +21,13 @@ export const useAddPostForm = () => {
         setValue,
         watch,
         formState: { errors },
+        register
     } = methods;
-    const onSubmit = (data: AddPostType) => {
-        // dispatch(AddPostService());
-        console.log(data);
+    const onSubmit = (data: AddPostSchema) => {
+        const formData: FormData  = new FormData();
+        formData.append('file', data.file[0]);
+        formData.append('text', data.text);
+        dispatch(AddPostService(formData));
     };
 
     return {
@@ -31,5 +37,6 @@ export const useAddPostForm = () => {
         setValue,
         watch,
         errors,
+        register
     };
 };
