@@ -4,7 +4,7 @@ import { PostItem } from 'features/PostItem/ui/PostItem';
 import { useSelector } from 'react-redux';
 import { getPosts } from 'features/Posts';
 import { AddPost } from 'features/AddPost/ui/AddPost';
-import { ModalComponent } from 'widgets/ModalComponent/ui/ModalComponent';
+import { ModalComponent } from 'shared/ui/ModalComponent/ui/ModalComponent';
 import { useState } from 'react';
 import { AddPostForm } from 'widgets/AddPostForm/ui/AddPostForm';
 import styles from './Posts.module.scss';

@@ -1,10 +1,9 @@
 import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
-import { registerService } from 'widgets/RegisterForm/models/services/registerService';
-import { loginService } from 'widgets/LoginForm/models/services/loginService';
-import { LoginFormType } from '../models/types/loginSchema';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {useDispatch} from 'react-redux';
+import {loginService} from 'widgets/LoginForm/models/services/loginService';
+import {LoginSchema} from '../models/types/loginSchema';
 
 export const useLoginForm = () => {
     const dispatch = useDispatch();
@@ -17,7 +16,7 @@ export const useLoginForm = () => {
     const {
         handleSubmit, control, setValue, watch, formState: { errors },
     } = methods;
-    const onSubmit = (data: LoginFormType) => {
+    const onSubmit = (data: LoginSchema) => {
         dispatch(loginService(data));
     };
 

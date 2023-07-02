@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import Modal from 'react-modal';
-import { ModalComponentType } from 'widgets/ModalComponent/type/ModalComponentType';
+import { ModalComponentType } from 'shared/ui/ModalComponent/type/ModalComponentType';
 import cls from './ModalComponent.module.scss';
 
 export const ModalComponent = ({ children, isOpen }: ModalComponentType) => {

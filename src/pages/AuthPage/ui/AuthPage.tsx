@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import Logo from 'shared/assets/icons/facebook.svg';
 import React, { useState } from 'react';
-import { ModalComponent } from 'widgets/ModalComponent/ui/ModalComponent';
+import { ModalComponent } from 'shared/ui/ModalComponent/ui/ModalComponent';
 import { RegisterForm } from 'widgets/RegisterForm';
 import { LoginForm } from 'widgets/LoginForm';
 import cls from './AuthPage.module.scss';

@@ -1,8 +1,20 @@
-export type LoginSchema = {
-    isLoading: boolean,
-    user: { email: string | null, id: string | null},
-    message: string | null,
-    error: string | null,
+export interface LoginSchema {
+    user: User | null;
+    error: any;
+    isLoading: boolean;
+}
+
+export interface User {
+    user: {
+        id: string;
+        email: string;
+        isActivated: boolean;
+        firstName: string;
+        lastName: string;
+        avatar: string;
+    }
+
+    accessToken: string;
 }
 
 export type LoginFormType = {
