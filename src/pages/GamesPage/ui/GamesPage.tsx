@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from 'widgets/Navbar';
+import cls from "pages/MainPage/ui/MainPage.module.scss";
+import {LeftSidebar} from "widgets/LeftSidebar";
+import {RightSidebar} from "widgets/RightSidebar/ui/RightSidebar";
 
 const GamesPage = () => {
     const { t } = useTranslation();
@@ -13,7 +16,17 @@ const GamesPage = () => {
     return (
         <div>
             <Navbar />
-            {t('Games page')}
+            <div className={cls.MainPageBody}>
+                <div className={cls.MainPageLeft}>
+                    <LeftSidebar />
+                </div>
+                <div className={cls.MainPageCenter}>
+
+                </div>
+                <div className={cls.MainPageRight}>
+                    <RightSidebar />
+                </div>
+            </div>
         </div>
     );
 };

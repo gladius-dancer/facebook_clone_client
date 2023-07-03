@@ -11,8 +11,8 @@ export const AuthProviderService = createAsyncThunk<LoginFormType>(
     async (data, thunkAPI) => {
         try {
             thunkAPI.dispatch(loaderActions.onOffLoader(true));
-            // const response = await axios.get('https://facebook-server-sage.vercel.app/api/refresh');
-            const response = await axios.get('http://localhost:6060/api/refresh');
+            const response = await axios.get('https://facebook-server-sage.vercel.app/api/refresh');
+            // const response = await axios.get('http://localhost:6060/api/refresh');
             localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data.accessToken));
             localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(response.data.user));
             thunkAPI.dispatch(authProviderActions.setUser(response.data))

@@ -11,8 +11,8 @@ export const loginService = createAsyncThunk<User, LoginSchema, { rejectValue: s
     async (data, thunkAPI) => {
         try {
             thunkAPI.dispatch(loaderActions.onOffLoader(true));
-            const response = await axios.post<User>('http://localhost:6060/api/login', data);
-            // const response = await axios.post<User>('https://facebook-server-sage.vercel.app/api/login', data);
+            // const response = await axios.post<User>('http://localhost:6060/api/login', data);
+            const response = await axios.post<User>('https://facebook-server-sage.vercel.app/api/login', data);
             localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data.accessToken));
             localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(response.data.user));
             new Notification().showSuccess('User successfully logined!');

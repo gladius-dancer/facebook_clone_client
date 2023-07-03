@@ -1,9 +1,9 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import {classNames} from 'shared/lib/classNames/classNames';
+import React, {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import cls from './RightSidebar.module.scss';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import classnames from "classnames";
 
 interface SidebarProps {
     className?: string;
@@ -22,11 +22,24 @@ export const RightSidebar = ({ className }: SidebarProps) => {
             className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
         >
             <div className={cls.items}>
-                <AppLink
-                    theme={AppLinkTheme.SECONDARY}
-                    to={RoutePath.main}
-                    className={cls.item}
-                />
+                <div className={cls.SidebarTitle}>
+                    {/*{contacts.map((contact) => (*/}
+                    {/*        <>*/}
+                    {/*            {*/}
+                    {/*                contact?.avatar?.length > 0*/}
+                    {/*                    ? <img src={contact?.avatar} alt=""/>*/}
+                    {/*                    : <span className={cls.IconWrap}>*/}
+                    {/*                        <AccountCircleIcon*/}
+                    {/*                            className={classnames(cls.TabIcon)}*/}
+                    {/*                            fontSize="medium"*/}
+                    {/*                        />*/}
+                    {/*                      </span>*/}
+                    {/*            }*/}
+                    {/*            <h4>{`${contact?.firstName} ${contact?.lastName}`}</h4>*/}
+                    {/*        </>*/}
+                    {/*    )*/}
+                    {/*)}*/}
+                </div>
 
             </div>
         </div>

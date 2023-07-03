@@ -4,6 +4,7 @@
     background: var(--page-bg-color);
     position: relative;
     transition: width 0.3s;
+    padding-left: 20px;
 }
 
 .collapseBtn {
@@ -12,10 +13,33 @@
     bottom: 32px;
 }
 
-.items {
-    margin-left: 30px;
+.SidebarTitle{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 30px;
+}
+
+.SidebarItems {
     display: flex;
     flex-direction: column;
+    gap: 35px;
+
+}
+
+.SidebarItem{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--body-text);
+    padding-left: 5px;
+
+    svg{
+        color: #385898;
+    }
 }
 
 .item {
@@ -49,5 +73,22 @@
         opacity: 0;
         transition: 0.2s opacity;
         width: 0;
+    }
+}
+
+.IconWrap{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--nav-bg-color);
+    position: relative;
+    svg{
+        color: var(--inverted-icon-color);
+    }
+    &:hover {
+        background: var(--tab-item-icon-hover);
     }
 }
