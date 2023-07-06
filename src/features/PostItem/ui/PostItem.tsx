@@ -29,12 +29,12 @@ export const PostItem = ({ className, post }: Props) => {
                 <p className={cls.PostItemBodyText}>
                     {post.text}
                 </p>
-
-                {/* { */}
-                {/*    post.type === 'video/mp4' */}
-                {/*        ? <video className={cls.PostMedia} src={post.pathToFile} controls /> */}
-                {/*        : <img className={cls.PostMedia} src={post.pathToFile} alt="" /> */}
-                {/* } */}
+                {
+                    post.type === 'video/mp4'
+                        /* eslint-disable jsx-a11y/media-has-caption */
+                        ? <video className={cls.PostMedia} src={post.pathToFile} controls />
+                        : <img className={cls.PostMedia} src={post.pathToFile} alt="" />
+                }
                 <ul className={cls.PostItemButtons}>
                     <li>
                         <Btn theme={ButtonTheme.CLEAR} className={cls.Like}>
