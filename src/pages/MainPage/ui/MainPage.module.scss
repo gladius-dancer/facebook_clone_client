@@ -1,12 +1,14 @@
+
 .MainPage {
     background: var(--page-bg-color);
 }
 
 .MainPageBody {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .MainPageCenter {
     width: 590px;
+    margin-top: var(--navbar-height);
 }

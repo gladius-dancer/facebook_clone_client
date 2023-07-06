@@ -13,6 +13,7 @@ export function createReduxStore(initialState?: StateSchema) {
         login: loginReducer,
         auth: authProviderReducer,
         posts: postsReducer,
+
     };
 
     return configureStore<StateSchema>({

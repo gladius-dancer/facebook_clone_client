@@ -2,7 +2,9 @@
     height: calc(100vh - var(--navbar-height));
     width: var(--sidebar-width);
     background: var(--page-bg-color);
-    position: relative;
+    position: fixed;
+    right: 0;
+    top: var(--navbar-height);
     transition: width 0.3s;
 }
 

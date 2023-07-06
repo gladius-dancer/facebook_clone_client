@@ -1,0 +1,28 @@
+.Unfriend{
+  width: 201px;
+  height: 370px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px 0 rgba(181, 177, 177, 0.42);
+  background: var(--nav-bg-color);
+}
+
+.Image{
+  height: 201px;
+  position: relative;
+  overflow: hidden;
+
+  img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.Body{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
