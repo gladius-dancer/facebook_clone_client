@@ -1,84 +1,84 @@
-
-.modalHeader{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 20px 20px 0 20px;
-  border-bottom: 1px #000 solid;
-  max-width: 432px;
+.modalHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 20px 0;
+    border-bottom: 1px #000 solid;
+    max-width: 432px;
 }
 
-.modalHeaderTitle{
-  font-size: 32px;
-  padding-bottom: 20px;
+.modalHeaderTitle {
+    font-size: 32px;
+    padding-bottom: 20px;
 }
 
-.modalSubHeader{
-  margin-bottom: 20px;
+.modalSubHeader {
+    margin-bottom: 20px;
 }
 
-
-.modalClose{
-  position: absolute!important;
-  top: 10px;
-  right: 12px;
+.modalClose {
+    position: absolute !important;
+    top: 10px;
+    right: 12px;
 }
 
-.modalForm{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding-top: 30px;
-  max-width: 432px;
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 30px;
+    max-width: 432px;
 }
 
-.modalInnerTop{
-  display: flex;
-  gap: 30px;
+.modalInnerTop {
+    display: flex;
+    gap: 30px;
 }
 
-.modalSelects{
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+.modalSelects {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.modalRadioGroup{
-  display: flex;
-  justify-content: center;
-  flex-direction: row!important;
-  gap: 20px;
-}
-
-.multiLine{
-  &:hover{
-    outline: none!important;
-    border: none!important;
-  }
-
-}
-
-.fileInput{
-  width: 100%;
-  label{
-    display: block;
-    height: 100px;
-    width: 100%;
-    background: var(--nav-bg-color);
-    border-radius: 10px;
-    color: var(--body-text);
+.modalRadioGroup {
     display: flex;
     justify-content: center;
-    align-items: center;
-    &:hover{
-      background: var(--tab-item-hover);
-    }
-  }
-  input{
-    display: none;
-  }
+    flex-direction: row !important;
+    gap: 20px;
 }
 
-.publishButton{
-  padding: 15px 0!important;
+.multiLine {
+    &:hover {
+        outline: none !important;
+        border: none !important;
+    }
+}
+
+.fileInput {
+    width: 100%;
+
+    label {
+        display: block;
+        height: 100px;
+        width: 100%;
+        background: var(--nav-bg-color);
+        border-radius: 10px;
+        color: var(--body-text);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background: var(--tab-item-hover);
+        }
+    }
+
+    input {
+        display: none;
+    }
+}
+
+.publishButton {
+    padding: 15px 0 !important;
 }

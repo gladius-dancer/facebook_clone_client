@@ -1,39 +1,39 @@
-.PostItem{
-  width: 100%;
-  background: var(--nav-bg-color);
-  padding: 15px;
-  border-radius: 10px;
+.PostItem {
+    width: 100%;
+    background: var(--nav-bg-color);
+    padding: 15px;
+    border-radius: 10px;
 }
 
-.PostItemHeader{
-  display: flex;
-  color: var(--body-text);
-}
-
-.PostItemButtons{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-
-  button{
+.PostItemHeader {
     display: flex;
-    align-items: center;
-    gap: 10px;
     color: var(--body-text);
-  }
 }
 
-.PostItemBodyText{
-  color: var(--body-text);
+.PostItemButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+
+    button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--body-text);
+    }
 }
 
-.PostMedia{
-  width: 100%;
-  height: auto;
-  padding: 15px 0;
+.PostItemBodyText {
+    color: var(--body-text);
 }
 
-.Like{
-  color: var(--tab-item-active)!important;
+.PostMedia {
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+}
+
+.Like {
+    color: var(--tab-item-active) !important;
 }

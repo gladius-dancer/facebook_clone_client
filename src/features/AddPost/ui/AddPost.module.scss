@@ -1,20 +1,20 @@
-.AddPost{
-  width: 100%;
-  height: 70px;
-  background: var(--nav-bg-color);
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
+.AddPost {
+    width: 100%;
+    height: 70px;
+    background: var(--nav-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
 }
 
-.AddPostArea{
-  height: 35px;
-  width: 100%;
-  background: var(--page-bg-color);
-  border-radius: 30px;
-  color: var(--nav-inner-bg-color);
-  display: flex;
-  align-items: center;
-  padding: 20px;
+.AddPostArea {
+    height: 35px;
+    width: 100%;
+    background: var(--page-bg-color);
+    border-radius: 30px;
+    color: var(--nav-inner-bg-color);
+    display: flex;
+    align-items: center;
+    padding: 20px;
 }

@@ -11,7 +11,7 @@ export const MultiLine = ({
     label,
     size,
     placeholder,
-    className
+    className,
 }: MultilineType) => (
     <Controller
         key={key}

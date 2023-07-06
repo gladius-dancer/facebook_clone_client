@@ -42,26 +42,20 @@ module.exports = {
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
-        'i18next/no-literal-string': [
-            'error',
-            {
-                markupOnly: true,
-                ignoreAttribute: ['data-testid', 'to'],
-            },
-        ],
+        // 'i18next/no-literal-string': [
+        //     'error',
+        //     {
+        //         markupOnly: true,
+        //         ignoreAttribute: ['data-testid', 'to'],
+        //     },
+        // ],
+        'i18next/no-literal-string': 'off',
         'max-len': ['error', { ignoreComments: true, code: 130 }],
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
         'no-param-reassign': 'off',
-        "rules": {
-            "jsx-a11y/media-has-caption": [ 2, {
-                "audio": [ "Audio" ],
-                "video": [ "Video" ],
-                "track": [ "Track" ],
-            }],
-        }
     },
     globals: {
         __IS_DEV__: true,

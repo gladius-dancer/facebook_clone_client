@@ -9,11 +9,9 @@ import { useLoginForm } from 'widgets/LoginForm/lib/useLoginForm';
 import cls from './LoginForm.module.scss';
 
 interface Props {
-    className?: string;
-    setModal?: any;
     toggleModal: ()=>void;
 }
-export const LoginForm = ({ className, setModal, toggleModal }:Props) => {
+export const LoginForm = ({ toggleModal }:Props) => {
     const { t } = useTranslation();
     const { onSubmit, handleSubmit, control } = useLoginForm();
     return (

@@ -1,18 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import CloseIcon from '@mui/icons-material/Close';
 import { InputText } from 'shared/ui/FormElements/InputText/ui/InputText';
 import { InputPass } from 'shared/ui/FormElements/InputPass/ui/InputPass';
 import { Dropdown } from 'shared/ui/FormElements/Dropdown/ui/Dropdown';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import React from 'react';
-import { useRegisterForm } from 'widgets/RegisterForm/lib/useRegisterForm';
 import RadioGroupComponent from 'shared/ui/FormElements/RadioGroup/ui/RadioGroup';
 import cls from './RegisterForm.module.scss';
 
-interface Props {
-    className?: string;
-    setModal?: any;
+interface DateState {
+    day: string[];
+    month: string[];
+    year: string[];
 }
 
 const gender = [{
@@ -25,36 +24,44 @@ const gender = [{
     label: 'Другое',
     value: 'yourVersion',
 }];
-export const RegisterForm = ({ className, setModal }:Props) => {
-    const { t } = useTranslation();
 
-    const {
-        onSubmit,
-        control,
-        handleSubmit,
-        watch,
-        setValue,
-        errors,
-        date,
-    } = useRegisterForm();
+const date: DateState = {
+    day: [
+        '1', '2', '3', '4', '5', '6',
+        '7', '8', '9', '10', '11', '12',
+        '13', '14', '15', '16', '17',
+        '18', '19', '20', '21', '22',
+        '23', '24', '25', '26', '27',
+        '28', '29', '30', '31'],
+    month: ['Январь', 'Февраль', 'Март', 'Апрель',
+        'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+        'Октябрь', 'Ноябрь', 'Декабрь'],
+    year: ['1990', '1991', '1992', '1993',
+        '1994', '1995', '1996', '1997',
+        '1998', '1999', '2000', '2001',
+        '2002', '2003', '2004', '2005',
+        '2006', '2007', '2008', '2009',
+        '2010', '2011', '2012', '2013',
+        '2014', '2015', '2016', '2017',
+        '2018', '2019', '2020', '2021',
+        '2022', '2023'],
+};
+export const RegisterForm = ({ methods }: any) => {
+    const { t } = useTranslation();
 
     return (
         <>
             <div className={cls.modalHeader}>
-                <CloseIcon
-                    className={cls.modalClose}
-                    onClick={() => setModal()}
-                />
                 <h2 className={cls.modalHeaderTitle}>Регистрация</h2>
                 <p className={cls.modalSubHeader}>Быстро и легко.</p>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className={cls.modalForm}>
+            <form onSubmit={methods.handleSubmit(methods.onSubmit)} className={cls.modalForm}>
                 <div className={cls.modalInnerTop}>
                     <InputText
                         key="name"
                         name="firstName"
                         label=""
-                        control={control}
+                        control={methods.control}
                         status
                         placeholder="Имя"
                         size="small"
@@ -63,7 +70,7 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                         key="lastName"
                         name="lastName"
                         label=""
-                        control={control}
+                        control={methods.control}
                         status
                         placeholder="Фамилия"
                         size="small"
@@ -74,7 +81,7 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                     key="email"
                     name="email"
                     label=""
-                    control={control}
+                    control={methods.control}
                     status
                     placeholder="Эл. адрес"
                     size="small"
@@ -82,7 +89,7 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                 <InputPass
                     key="password"
                     name="password"
-                    control={control}
+                    control={methods.control}
                     placeholder="Пароль"
                     size="small"
                 />
@@ -92,7 +99,7 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                         key="day"
                         name="day"
                         label=""
-                        control={control}
+                        control={methods.control}
                         options={date.day}
                         size="small"
                     />
@@ -100,7 +107,7 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                         key="month"
                         name="month"
                         label=""
-                        control={control}
+                        control={methods.control}
                         options={date.month}
                         size="small"
                     />
@@ -108,7 +115,7 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                         key="year"
                         name="year"
                         label=""
-                        control={control}
+                        control={methods.control}
                         options={date.year}
                         size="small"
                     />
@@ -119,7 +126,7 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                         name="gender"
                         items={gender}
                         className={cls.modalRadioGroup}
-                        control={control}
+                        control={methods.control}
                     />
                 </div>
                 <div className="register-info">
@@ -128,7 +135,7 @@ export const RegisterForm = ({ className, setModal }:Props) => {
                         могли загрузить вашу контактную информацию на Facebook.
                     </span>
                     <Link to="/">Подробнее</Link>
-                    <span>Нажимая кнопку "Регистрация", вы принимаете наши </span>
+                    <span>Нажимая кнопку Регистрация, вы принимаете наши </span>
                     <Link to="/"> Условия использования, </Link>
                     <Link to="/">Политику конфиденциальности</Link>
                     <span> и </span>

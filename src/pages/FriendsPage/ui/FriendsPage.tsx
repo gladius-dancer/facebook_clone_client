@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from 'widgets/Navbar';
-import cls from "pages/MainPage/ui/MainPage.module.scss";
-import {LeftSidebar} from "widgets/LeftSidebar";
-import {RightSidebar} from "widgets/RightSidebar/ui/RightSidebar";
+import cls from 'pages/MainPage/ui/MainPage.module.scss';
+import { LeftSidebar } from 'widgets/LeftSidebar';
+import { RightSidebar } from 'widgets/RightSidebar/ui/RightSidebar';
 
 const FriendsPage = () => {
     const { t } = useTranslation();
@@ -20,9 +20,7 @@ const FriendsPage = () => {
                 <div className={cls.MainPageLeft}>
                     <LeftSidebar />
                 </div>
-                <div className={cls.MainPageCenter}>
-
-                </div>
+                <div className={cls.MainPageCenter} />
                 <div className={cls.MainPageRight}>
                     <RightSidebar />
                 </div>

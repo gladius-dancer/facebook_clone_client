@@ -1,45 +1,44 @@
-
-.inputLogin{
-  width: 100%;
+.inputLogin {
+    width: 100%;
 }
 
-.loginForm{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  padding: 20px;
-  box-shadow: 0 0 15px 0 #d5d2d2;
-  background: #fff;
-  border-radius: 10px;
-  width: 100%;
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    box-shadow: 0 0 15px 0 #d5d2d2;
+    background: #fff;
+    border-radius: 10px;
+    width: 100%;
 }
 
-.horizontalLine{
-  width: 100%;
-  height: 1px;
-  background: #cecccc;
-  margin: 10px 0;
+.horizontalLine {
+    width: 100%;
+    height: 1px;
+    background: #cecccc;
+    margin: 10px 0;
 }
 
-.registerButton{
-  background: #52b202 !important;
+.registerButton {
+    background: #52b202 !important;
 
-  &:hover{
-    background: #479804 !important;
-  }
+    &:hover {
+        background: #479804 !important;
+    }
 }
 
-.formTitle{
-  font-size: 12px;
-  margin: 0;
+.formTitle {
+    font-size: 12px;
+    margin: 0;
 }
 
-.registerInfo{
-  font-size: 11px;
-  a{
-    display: inline-block;
-  }
-}
+.registerInfo {
+    font-size: 11px;
 
+    a {
+        display: inline-block;
+    }
+}

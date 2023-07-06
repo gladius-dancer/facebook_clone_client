@@ -1,9 +1,3 @@
-export interface LoginSchema {
-    user: User | null;
-    error: any;
-    isLoading: boolean;
-}
-
 export interface User {
     user: {
         id: string;
@@ -15,6 +9,11 @@ export interface User {
     }
 
     accessToken: string;
+}
+export interface LoginSchema {
+    user: User | null;
+    error: any;
+    isLoading: boolean;
 }
 
 export type LoginFormType = {

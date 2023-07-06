@@ -1,6 +1,6 @@
-import {classNames} from 'shared/lib/classNames/classNames';
-import {useTranslation} from 'react-i18next';
-import React, {useEffect, useRef, useState} from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useTranslation } from 'react-i18next';
+import React, { useEffect, useRef, useState } from 'react';
 import LogoSmall from 'shared/assets/icons/logo.svg';
 import classnames from 'classnames';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -14,28 +14,28 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-import {Input} from 'shared/ui/Input/Input';
-import {AppLink, AppLinkTheme} from 'shared/ui/AppLink/AppLink';
-import {RoutePath} from 'shared/config/routeConfig/routeConfig';
-import {useLocation, useNavigate} from 'react-router-dom';
+import { Input } from 'shared/ui/Input/Input';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserData, loginActions } from 'widgets/LoginForm';
+import { LogoutService } from 'app/providers/AuthProvider/models/services/AuthProviderService';
+import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import cls from './Navbar.module.scss';
-import {useDispatch, useSelector} from "react-redux";
-import {getUserData, loginActions} from "widgets/LoginForm";
-import {LogoutService} from "app/providers/AuthProvider/models/services/AuthProviderService";
-import {ThemeSwitcher} from "shared/ui/ThemeSwitcher";
 
 interface NavbarProps {
     className?: string;
 }
 
-export const Navbar = ({className}: NavbarProps) => {
-    const {t} = useTranslation();
+export const Navbar = ({ className }: NavbarProps) => {
+    const { t } = useTranslation();
     const [popup, setPopup] = useState(false);
     const location = useLocation();
     const [currentTab, setCurrentTab] = useState(`${location.pathname}`);
     const userData = useSelector(getUserData);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const AccountPopup = useRef(null);
     const Account = useRef(null);
 
@@ -43,17 +43,17 @@ export const Navbar = ({className}: NavbarProps) => {
         await dispatch(LogoutService());
         await dispatch(loginActions.logout);
         navigate('/auth');
-    }
+    };
     const handleClick = (event: MouseEvent) => {
         const targetElement = event.target;
         const containBody = AccountPopup.current.contains(targetElement);
         const containAccountIcon = Account.current.contains(targetElement);
 
         if (!containBody && !containAccountIcon) {
-            setPopup(prev=>false);
+            setPopup((prev) => false);
         }
-        if(containAccountIcon) {
-            setPopup(prev=>!prev);
+        if (containAccountIcon) {
+            setPopup((prev) => !prev);
         }
     };
 
@@ -64,99 +64,104 @@ export const Navbar = ({className}: NavbarProps) => {
         };
     }, []);
 
-            return (
-                <div className={classNames(cls.Navbar, {}, [className])}>
-                    <div className={cls.NavbarLeft}>
-                        <AppLink
-                            theme={AppLinkTheme.SECONDARY}
-                            to={RoutePath.main}
-                        >
-                            <LogoSmall/>
-                        </AppLink>
+    return (
+        <div className={classNames(cls.Navbar, {}, [className])}>
+            <div className={cls.NavbarLeft}>
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    to={RoutePath.main}
+                >
+                    <LogoSmall />
+                </AppLink>
 
-                        <Input
-                            key="search"
-                            placeholder="Поиск на Facebook"
-                            className={cls.Search}
-                        />
-                    </div>
-                    <div className={classnames(cls.NavbarCenter, cls.Tabs)}>
-                        <AppLink
-                            theme={AppLinkTheme.SECONDARY}
-                            to={RoutePath.main}
-                            className={classnames(cls.item, cls.TabItem, currentTab === '/' ? cls.TabItemActive : '')}
-                        >
-                            <HomeOutlinedIcon fontSize="large" className={cls.TabIcon}/>
-                        </AppLink>
-                        <AppLink
-                            theme={AppLinkTheme.SECONDARY}
-                            to={RoutePath.friends}
-                            className={classnames(cls.item, cls.TabItem, currentTab === '/friends' ? cls.TabItemActive : '')}
-                        >
-                            <PeopleAltOutlinedIcon fontSize="large" className={cls.TabIcon}/>
-                        </AppLink>
-                        <AppLink
-                            theme={AppLinkTheme.SECONDARY}
-                            to={RoutePath.marketplace}
-                            className={classnames(cls.item, cls.TabItem, currentTab === '/marketplace' ? cls.TabItemActive : '')}
-                        >
-                            <StoreOutlinedIcon fontSize="large" className={cls.TabIcon}/>
-                        </AppLink>
-                        <AppLink
-                            theme={AppLinkTheme.SECONDARY}
-                            to={RoutePath.groups}
-                            className={classnames(cls.item, cls.TabItem, currentTab === '/groups' ? cls.TabItemActive : '')}
-                        >
-                            <GroupsOutlinedIcon fontSize="large" className={cls.TabIcon}/>
-                        </AppLink>
-                        <AppLink
-                            theme={AppLinkTheme.SECONDARY}
-                            to={RoutePath.games}
-                            className={classnames(cls.item, cls.TabItem, currentTab === '/games' ? cls.TabItemActive : '')}
-                        >
-                            <VideogameAssetOutlinedIcon fontSize="large" className={cls.TabIcon}/>
-                        </AppLink>
-                    </div>
-                    <ul className={cls.NavbarRight}>
-                        <li>
-                            <AppsIcon className={classnames(cls.TabIcon)} fontSize="medium"/>
-                        </li>
-                        <li>
-                            <MarkUnreadChatAltIcon className={classnames(cls.TabIcon)} fontSize="medium"/>
-                        </li>
-                        <li>
-                            <NotificationsActiveIcon className={classnames(cls.TabIcon)} fontSize="medium"/>
-                        </li>
-                        <li ref={Account}>
-                            <AccountCircleIcon
-                                               className={classnames(cls.TabIcon)}
-                                               fontSize="medium"/>
-                            <div ref={AccountPopup}
-                                 className={classnames(cls.AccountPopup, popup ? "visible" : "hide")}>
-                                <div className={cls.AccountPupupTitle}>
-                                    {userData?.user?.avatar?.length > 0
-                                        ? <img src={userData?.user?.avatar} alt=""/>
-                                        : <span className={cls.IconWrap}>
-                                            <AccountCircleIcon className={classnames(cls.TabIcon)} fontSize="medium"/>
-                                        </span>
-                                    }
-                                    {/*<h4>{`${userData?.user?.firstName} ${userData?.user?.lastName}`}</h4>*/}
-                                    <h4>
-                                        {
-                                            `${JSON.parse(localStorage.getItem("user"))?.firstName} 
-                                             ${JSON.parse(localStorage.getItem("user"))?.lastName}`
-                                        }
-                                    </h4>
-                                </div>
-                                <div className={cls.AccountPupupBody}>
-                                    <ThemeSwitcher/>
-                                    <span className={cls.PupupItem} onClick={() => logout()}>
-                                    <span className={cls.IconWrap}><LogoutIcon/></span><span>Выйти</span>
+                <Input
+                    key="search"
+                    placeholder="Поиск на Facebook"
+                    className={cls.Search}
+                />
+            </div>
+            <div className={classnames(cls.NavbarCenter, cls.Tabs)}>
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    to={RoutePath.main}
+                    className={classnames(cls.item, cls.TabItem, currentTab === '/' ? cls.TabItemActive : '')}
+                >
+                    <HomeOutlinedIcon fontSize="large" className={cls.TabIcon} />
+                </AppLink>
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    to={RoutePath.friends}
+                    className={classnames(cls.item, cls.TabItem, currentTab === '/friends' ? cls.TabItemActive : '')}
+                >
+                    <PeopleAltOutlinedIcon fontSize="large" className={cls.TabIcon} />
+                </AppLink>
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    to={RoutePath.marketplace}
+                    className={classnames(cls.item, cls.TabItem, currentTab === '/marketplace' ? cls.TabItemActive : '')}
+                >
+                    <StoreOutlinedIcon fontSize="large" className={cls.TabIcon} />
+                </AppLink>
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    to={RoutePath.groups}
+                    className={classnames(cls.item, cls.TabItem, currentTab === '/groups' ? cls.TabItemActive : '')}
+                >
+                    <GroupsOutlinedIcon fontSize="large" className={cls.TabIcon} />
+                </AppLink>
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    to={RoutePath.games}
+                    className={classnames(cls.item, cls.TabItem, currentTab === '/games' ? cls.TabItemActive : '')}
+                >
+                    <VideogameAssetOutlinedIcon fontSize="large" className={cls.TabIcon} />
+                </AppLink>
+            </div>
+            <ul className={cls.NavbarRight}>
+                <li>
+                    <AppsIcon className={classnames(cls.TabIcon)} fontSize="medium" />
+                </li>
+                <li>
+                    <MarkUnreadChatAltIcon className={classnames(cls.TabIcon)} fontSize="medium" />
+                </li>
+                <li>
+                    <NotificationsActiveIcon className={classnames(cls.TabIcon)} fontSize="medium" />
+                </li>
+                <li ref={Account}>
+                    <AccountCircleIcon
+                        className={classnames(cls.TabIcon)}
+                        fontSize="medium"
+                    />
+                    <div
+                        ref={AccountPopup}
+                        className={classnames(cls.AccountPopup, popup ? 'visible' : 'hide')}
+                    >
+                        <div className={cls.AccountPupupTitle}>
+                            {userData?.user?.avatar?.length > 0
+                                ? <img src={userData?.user?.avatar} alt="" />
+                                : (
+                                    <span className={cls.IconWrap}>
+                                        <AccountCircleIcon className={classnames(cls.TabIcon)} fontSize="medium" />
+                                    </span>
+                                )}
+                            {/* <h4>{`${userData?.user?.firstName} ${userData?.user?.lastName}`}</h4> */}
+                            <h4>
+                                {
+                                    `${JSON.parse(localStorage.getItem('user'))?.firstName} 
+                                             ${JSON.parse(localStorage.getItem('user'))?.lastName}`
+                                }
+                            </h4>
+                        </div>
+                        <div className={cls.AccountPupupBody}>
+                            <ThemeSwitcher />
+                            <span className={cls.PupupItem} onClick={() => logout()}>
+                                <span className={cls.IconWrap}><LogoutIcon /></span>
+                                <span>Выйти</span>
                             </span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            );
-        };
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    );
+};

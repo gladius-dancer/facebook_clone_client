@@ -1,19 +1,21 @@
 @import "mixins";
+@import "./reset";
+@import "./variables/global";
+@import "./themes/normal";
+@import "./themes/dark";
 @include font-face(SFN, "shared/assets/fonts/SF-Pro-Display-Regular", normal, 400);
 
-@import "reset";
-@import "variables/global";
-@import "themes/normal";
-@import "themes/dark";
-
-*{
-    font-family: SFN, Helvetica, SansSerif, Arial;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .app,
 .app_modal {
     font: var(--font-m);
     color: var(--primary-color);
+    font-family: SFN, Helvetica, Arial, sans-serif;
 }
 
 .app {
@@ -25,14 +27,10 @@
     display: flex;
 }
 
-.show{
+.show {
     visibility: visible;
 }
 
-.hide{
+.hide {
     visibility: hidden;
 }
-
-
-
-

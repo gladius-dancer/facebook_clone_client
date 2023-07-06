@@ -1,9 +1,3 @@
-export interface AuthProviderSchema {
-    user: User | null;
-    error: any;
-    isLoading: boolean;
-}
-
 export interface User {
     user: {
         id: string;
@@ -14,4 +8,9 @@ export interface User {
     }
 
     accessToken: string;
+}
+export interface AuthProviderSchema {
+    user: User | null;
+    error: any;
+    isLoading: boolean;
 }

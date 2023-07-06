@@ -15,7 +15,7 @@ export const PostsService = createAsyncThunk<PostSchema[]>(
             };
 
             const response = await axios.get(
-                'https://facebook-server-sage.vercel.app/api/posts',
+                `${process.env.API_URL}/api/posts`,
                 {
                     headers,
                     params: {
@@ -27,7 +27,6 @@ export const PostsService = createAsyncThunk<PostSchema[]>(
             thunkAPI.dispatch(loaderActions.onOffLoader(false));
             return response.data;
         } catch (e) {
-            new Notification().showError(e.message);
             thunkAPI.dispatch(loaderActions.onOffLoader(false));
             return thunkAPI.rejectWithValue('error');
         }

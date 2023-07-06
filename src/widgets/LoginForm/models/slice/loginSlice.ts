@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {LoginSchema, User} from '../types/loginSchema';
+import { LoginSchema, User } from '../types/loginSchema';
 import { loginService } from '../services/loginService';
 
 const initialState: LoginSchema = {
@@ -15,7 +15,7 @@ export const loginSlice = createSlice({
             state.user = action.payload;
         },
         logout: (state, action: PayloadAction<string>) => {
-           state.user = null
+            state.user = null;
         },
     },
     extraReducers: (builder) => {

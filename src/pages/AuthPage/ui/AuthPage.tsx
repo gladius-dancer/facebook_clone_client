@@ -1,21 +1,14 @@
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import Logo from 'shared/assets/icons/facebook.svg';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ModalComponent } from 'shared/ui/ModalComponent/ui/ModalComponent';
 import { RegisterForm } from 'widgets/RegisterForm';
 import { LoginForm } from 'widgets/LoginForm';
+import { useAuthPage } from 'pages/AuthPage/lib/useAuthPage';
 import cls from './AuthPage.module.scss';
 
-interface Props {
-    className?: string;
-}
-const AuthPage = ({ className }:Props) => {
-    const { t } = useTranslation();
-    const [modal, setModal] = useState(false);
-    const toggleModal = () => {
-        setModal(!modal);
-    };
+const AuthPage = () => {
+    const methods = useAuthPage();
     return (
         <>
             <div className={classNames(cls.AuthPage, {}, [])}>
@@ -28,13 +21,13 @@ const AuthPage = ({ className }:Props) => {
                             </div>
                         </div>
                         <div className={cls.rightContent}>
-                            <LoginForm toggleModal={() => toggleModal()} />
+                            <LoginForm toggleModal={() => methods.toggleModal()} />
                         </div>
                     </div>
                 </div>
             </div>
-            <ModalComponent isOpen={modal}>
-                <RegisterForm setModal={() => toggleModal()} />
+            <ModalComponent isOpen={methods.modal} setModal={() => methods.toggleModal()}>
+                <RegisterForm methods={methods} />
             </ModalComponent>
         </>
     );

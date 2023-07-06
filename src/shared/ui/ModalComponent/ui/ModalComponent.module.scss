@@ -1,47 +1,47 @@
 .React_Overlay {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .modalBack {
-  background: rgba(93, 91, 91, 0.52);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1100;
+    background: rgb(93 91 91 / 52%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1100;
 }
 
 .modalTop {
-  height: 30px;
+    height: 30px;
 }
 
 .modalContent {
-  background: #fff;
-  border-radius: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 2px 10px 30px rgba(0, 0, 0, 0.15);
-  border: 1px solid #ebebeb;
-  z-index: 1101;
-  display: inline-block;
-  padding: 20px;
-  width: auto;
-  outline: none;
+    background: #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 10px 30px rgb(0 0 0 / 15%);
+    border: 1px solid #ebebeb;
+    z-index: 1101;
+    display: inline-block;
+    padding: 20px;
+    width: auto;
+    outline: none;
 }
 
 .opened {
-  display: block;
+    display: block;
 }
 
 .modalClose {
-  position: absolute !important;
-  top: 10px;
-  right: 10px;
-  z-index: 1202;
+    position: absolute !important;
+    top: 10px;
+    right: 12px;
+    z-index: 1202;
 }

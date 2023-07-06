@@ -16,6 +16,8 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         }),
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
+            'process.env.API_URL': JSON.stringify('http://localhost:7000'),
+            // 'process.env.API_URL': JSON.stringify('https://facebook-server-sage.vercel.app'),
         }),
     ];
 

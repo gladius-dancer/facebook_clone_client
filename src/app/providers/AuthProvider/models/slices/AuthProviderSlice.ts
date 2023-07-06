@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AuthProviderService } from 'app/providers/AuthProvider';
 import { AuthProviderSchema, User } from '../types/AuthProviderSchema';
-import {AuthProviderService} from "app/providers/AuthProvider";
 
 const initialState: AuthProviderSchema = {
     user: null,
     error: false,
-    isLoading: false
+    isLoading: false,
 
 };
 export const authProviderSlice = createSlice({
@@ -16,9 +16,8 @@ export const authProviderSlice = createSlice({
             state.user = action.payload;
         },
         logout: (state, action: PayloadAction<string>) => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
-
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
         },
     },
     extraReducers: (builder) => {

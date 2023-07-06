@@ -12,9 +12,13 @@ export type Post = {
         firstName: string
     }
     comments: string[],
-
 }
 
 export type PostSchema = {
     posts: Post[]
+}
+
+export type AddPostSchema = {
+    text: string;
+    file: FileList;
 }

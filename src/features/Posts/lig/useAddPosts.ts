@@ -3,15 +3,19 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { AddPostService } from 'widgets/AddPostForm';
-import { AddPostSchema } from '../models/types/AddPostSchema';
+import { useState } from 'react';
+import { AddPostSchema } from '../models/types/PostSchema';
 
-export const useAddPostForm = () => {
+export const useAddPost = () => {
     const dispatch = useDispatch();
-
+    const [modal, setModal] = useState(false);
+    const toggleModal = () => {
+        setModal(!modal);
+    };
     const schema = yup.object().shape({
         text: yup.string().required('Post text is required!'),
         file: yup.mixed()
-            .required("Required")
+            .required('Required'),
     });
 
     const methods = useForm({ resolver: yupResolver(schema) });
@@ -21,16 +25,22 @@ export const useAddPostForm = () => {
         setValue,
         watch,
         formState: { errors },
-        register
+        register,
     } = methods;
 
-    const fileName = watch("file");
+    const fileName = watch('file');
 
     const onSubmit = (data: AddPostSchema) => {
-        const formData: FormData  = new FormData();
+        const formData: FormData = new FormData();
         formData.append('file', data.file[0]);
         formData.append('text', data.text);
-        dispatch(AddPostService(formData));
+        dispatch(AddPostService(formData))
+            // @ts-ignore
+            .then((data) => {
+                if (data.type === 'addPost/fulfilled') {
+                    toggleModal();
+                }
+            });
     };
 
     return {
@@ -41,6 +51,8 @@ export const useAddPostForm = () => {
         watch,
         errors,
         register,
-        fileName
+        fileName,
+        modal,
+        toggleModal,
     };
 };

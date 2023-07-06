@@ -11,7 +11,6 @@ interface Props {
     className?: string;
     post: Post
 }
-
 export const PostItem = ({ className, post }: Props) => {
     const { t } = useTranslation();
     return (
@@ -31,11 +30,11 @@ export const PostItem = ({ className, post }: Props) => {
                     {post.text}
                 </p>
 
-                {
-                    post.type === 'video/mp4'
-                        ? <video className={cls.PostMedia} src={post.pathToFile} controls />
-                        : <img className={cls.PostMedia} src={post.pathToFile} alt="" />
-                }
+                {/* { */}
+                {/*    post.type === 'video/mp4' */}
+                {/*        ? <video className={cls.PostMedia} src={post.pathToFile} controls /> */}
+                {/*        : <img className={cls.PostMedia} src={post.pathToFile} alt="" /> */}
+                {/* } */}
                 <ul className={cls.PostItemButtons}>
                     <li>
                         <Btn theme={ButtonTheme.CLEAR} className={cls.Like}>

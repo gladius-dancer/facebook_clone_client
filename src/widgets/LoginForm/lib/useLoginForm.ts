@@ -1,11 +1,13 @@
 import * as yup from 'yup';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {useDispatch} from 'react-redux';
-import {loginService} from 'widgets/LoginForm/models/services/loginService';
-import {LoginSchema} from '../models/types/loginSchema';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
+import { loginService } from 'widgets/LoginForm/models/services/loginService';
+import { useNavigate } from 'react-router-dom';
+import { LoginSchema } from '../models/types/loginSchema';
 
 export const useLoginForm = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const schema = yup.object().shape({
         email: yup.string().email('Should be email!').required('Email is required!'),
@@ -17,7 +19,13 @@ export const useLoginForm = () => {
         handleSubmit, control, setValue, watch, formState: { errors },
     } = methods;
     const onSubmit = (data: LoginSchema) => {
-        dispatch(loginService(data));
+        dispatch(loginService(data))
+            // @ts-ignore
+            .then((data) => {
+                if (data.type === 'login/fulfilled') {
+                    navigate('/');
+                }
+            });
     };
 
     return {
