@@ -2,8 +2,8 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
+import { RegisterFormData } from 'widgets/RegisterForm/models/types/registerFormData';
 import { registerService } from 'widgets/RegisterForm/models/services/registerService';
-import { RegisterFormData } from '../models/types/registerFormData';
 
 interface DateState {
     day: string[];
@@ -56,8 +56,6 @@ export const useUsers = () => {
         watch,
         formState: { errors },
     } = methods;
-
-    const fileName = watch('file');
     const onSubmit = (data: RegisterFormData) => {
         dispatch(registerService({ ...data, date: `${data?.day} ${data?.month} ${data?.year}` }));
     };
@@ -70,6 +68,5 @@ export const useUsers = () => {
         watch,
         errors,
         date,
-        fileName,
     };
 };

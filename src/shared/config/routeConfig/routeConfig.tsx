@@ -6,6 +6,7 @@ import { FriendsPage } from 'pages/FriendsPage';
 import { MarketplacePage } from 'pages/MarketplacePage';
 import { GroupsPage } from 'pages/GroupsPage';
 import { GamesPage } from 'pages/GamesPage';
+import { ProfilePage } from 'pages/ProfilePage';
 
 export enum AppRoutes {
     MAIN = 'main',
@@ -14,6 +15,7 @@ export enum AppRoutes {
     GROUPS = 'groups',
     GAMES = 'games',
     AUTH = 'auth',
+    PROFILE = 'profile',
     NOT_FOUND = 'not_found',
 }
 
@@ -24,6 +26,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.GROUPS]: '/groups',
     [AppRoutes.GAMES]: '/games',
     [AppRoutes.AUTH]: '/auth',
+    [AppRoutes.PROFILE]: '/profile',
     [AppRoutes.NOT_FOUND]: '*',
 };
 
@@ -51,6 +54,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.AUTH]: {
         path: RoutePath.auth,
         element: <AuthPage />,
+    },
+    [AppRoutes.PROFILE]: {
+        path: RoutePath.profile,
+        element: <ProfilePage />,
     },
     [AppRoutes.NOT_FOUND]: {
         path: RoutePath.not_found,

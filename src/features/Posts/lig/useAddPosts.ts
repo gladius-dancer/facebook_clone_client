@@ -31,6 +31,7 @@ export const useAddPost = () => {
     const fileName = watch('file');
 
     const onSubmit = (data: AddPostSchema) => {
+        console.log(data);
         const formData: FormData = new FormData();
         formData.append('file', data.file[0]);
         formData.append('text', data.text);
