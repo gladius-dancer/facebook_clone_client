@@ -86,6 +86,13 @@
     align-items: center;
     background: var(--nav-bg-color);
     position: relative;
+    overflow: hidden;
+
+    img{
+        width: 100%;
+        height: auto;
+
+    }
 
     svg {
         color: var(--inverted-icon-color);

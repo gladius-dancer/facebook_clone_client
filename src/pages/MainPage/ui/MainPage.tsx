@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from 'widgets/Navbar';
-import { Posts } from 'features/Posts/ui/Posts';
+import { Posts } from 'entities/Posts/ui/Posts';
 import { LeftSidebar } from 'widgets/LeftSidebar';
 import { RightSidebar } from 'widgets/RightSidebar/ui/RightSidebar';
 import { useDispatch } from 'react-redux';
-import { PostsService } from 'features/Posts/models/services/PostsServices';
+import { PostsService } from 'entities/Posts/models/services/PostsServices';
 import cls from './MainPage.module.scss';
 
 const MainPage = () => {

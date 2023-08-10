@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, loginActions } from 'widgets/LoginForm';
 import { LogoutService } from 'app/providers/AuthProvider/models/services/AuthProviderService';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
+import { getIsAuth } from 'app/providers/AuthProvider';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -38,6 +39,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     const navigate = useNavigate();
     const AccountPopup = useRef(null);
     const Account = useRef(null);
+    const isAuth = useSelector(getIsAuth).user;
 
     const logout = async () => {
         await dispatch(LogoutService());
@@ -128,17 +130,28 @@ export const Navbar = ({ className }: NavbarProps) => {
                     <NotificationsActiveIcon className={classnames(cls.TabIcon)} fontSize="medium" />
                 </li>
                 <li ref={Account}>
-                    <AccountCircleIcon
-                        className={classnames(cls.TabIcon)}
-                        fontSize="medium"
-                    />
+                    {isAuth?.avatar?.length > 0
+                        ? (
+                            <span className={cls.IconWrap}>
+                                <img src={isAuth?.avatar} alt="" />
+                            </span>
+                        )
+                        : (
+                            <span className={cls.IconWrap}>
+                                <AccountCircleIcon className={classnames(cls.TabIcon)} fontSize="medium" />
+                            </span>
+                        )}
                     <div
                         ref={AccountPopup}
                         className={classnames(cls.AccountPopup, popup ? 'visible' : 'hide')}
                     >
-                        <div className={cls.AccountPupupTitle}>
-                            {userData?.user?.avatar?.length > 0
-                                ? <img src={userData?.user?.avatar} alt="" />
+                        <div className={cls.AccountPupupTitle} onClick={() => navigate('/profile')}>
+                            {isAuth?.avatar?.length > 0
+                                ? (
+                                    <span className={cls.IconWrap}>
+                                        <img src={isAuth.avatar} alt="" />
+                                    </span>
+                                )
                                 : (
                                     <span className={cls.IconWrap}>
                                         <AccountCircleIcon className={classnames(cls.TabIcon)} fontSize="medium" />
@@ -147,8 +160,7 @@ export const Navbar = ({ className }: NavbarProps) => {
                             {/* <h4>{`${userData?.user?.firstName} ${userData?.user?.lastName}`}</h4> */}
                             <h4>
                                 {
-                                    `${JSON.parse(localStorage.getItem('user'))?.firstName} 
-                                             ${JSON.parse(localStorage.getItem('user'))?.lastName}`
+                                    `${isAuth?.firstName} ${isAuth?.lastName}`
                                 }
                             </h4>
                         </div>

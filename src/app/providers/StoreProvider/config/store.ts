@@ -3,8 +3,8 @@ import { loaderReducer } from 'shared/ui/PageLoader';
 import { registerReducer } from 'widgets/RegisterForm';
 import { loginReducer } from 'widgets/LoginForm';
 import { authProviderReducer } from 'app/providers/AuthProvider';
-import { postsReducer } from 'features/Posts';
-import { unfriendsReducer, friendsReducer, familliarsReducer } from 'features/Users';
+import { postsReducer } from 'entities/Posts';
+import { unfriendsReducer, friendsReducer, familliarsReducer } from 'entities/Users';
 import { StateSchema } from './StateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {

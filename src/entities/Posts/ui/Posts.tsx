@@ -1,11 +1,11 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { PostItem } from 'features/PostItem/ui/PostItem';
 import { useSelector } from 'react-redux';
-import { getPosts } from 'features/Posts';
+import { getPosts } from 'entities/Posts';
 import { AddPost } from 'features/AddPost/ui/AddPost';
 import { ModalComponent } from 'shared/ui/ModalComponent/ui/ModalComponent';
 import { AddPostForm } from 'widgets/AddPostForm/ui/AddPostForm';
-import { useAddPost } from 'features/Posts/lig/useAddPosts';
+import { useAddPost } from 'entities/Posts/lig/useAddPosts';
 import styles from './Posts.module.scss';
 
 interface Props {

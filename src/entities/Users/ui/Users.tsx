@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { FamilliarService, FriendService, UnfriendService } from 'features/Users';
+import { FamilliarService, FriendService, UnfriendService } from 'entities/Users';
 import cls from './Users.module.scss';
 
 interface Props {
@@ -16,7 +16,7 @@ export const Users = ({ className, children }:Props) => {
         dispatch(FriendService());
         dispatch(UnfriendService());
         dispatch(FamilliarService());
-    });
+    }, [dispatch]);
     const { t } = useTranslation();
 
     return (

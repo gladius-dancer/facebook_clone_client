@@ -11,7 +11,7 @@ import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlin
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
-import { getUserData } from 'widgets/LoginForm';
+import { getIsAuth } from 'app/providers/AuthProvider';
 import cls from './LeftSidebar.module.scss';
 
 interface SidebarProps {
@@ -25,7 +25,7 @@ export const LeftSidebar = ({ className }: SidebarProps) => {
     const onToggle = () => {
         setCollapsed((prev) => !prev);
     };
-    const userData = useSelector(getUserData);
+    const isAuth = useSelector(getIsAuth).user;
 
     return (
         <div
@@ -34,8 +34,12 @@ export const LeftSidebar = ({ className }: SidebarProps) => {
         >
             <div className={cls.SidebarItems}>
                 <div className={cls.SidebarTitle}>
-                    {userData?.user?.avatar?.length > 0
-                        ? <img src={userData?.user?.avatar} alt="" />
+                    {isAuth?.avatar?.length > 0
+                        ? (
+                            <span className={cls.IconWrap}>
+                                <img src={isAuth?.avatar} alt="" />
+                            </span>
+                        )
                         : (
                             <span className={cls.IconWrap}>
                                 <AccountCircleIcon className={classnames(cls.TabIcon)} fontSize="medium" />
@@ -44,8 +48,7 @@ export const LeftSidebar = ({ className }: SidebarProps) => {
                     {/* <h4>{`${userData?.user?.firstName} ${userData?.user?.lastName}`}</h4> */}
                     <h4 className={cls.SidebarItem}>
                         {
-                            `${JSON.parse(localStorage.getItem('user'))?.firstName} 
-                                             ${JSON.parse(localStorage.getItem('user'))?.lastName}`
+                            `${isAuth?.firstName} ${isAuth?.lastName}`
                         }
                     </h4>
                 </div>

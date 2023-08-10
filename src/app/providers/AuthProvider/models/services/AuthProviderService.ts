@@ -16,7 +16,7 @@ export const AuthProviderService = createAsyncThunk<LoginFormType>(
             });
             await localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data.accessToken));
             await localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(response.data.user));
-            await thunkAPI.dispatch(authProviderActions.setUser(response.data));
+            await thunkAPI.dispatch(authProviderActions.setUser(response.data.user));
             await thunkAPI.dispatch(loaderActions.onOffLoader(false));
             return response.data;
         } catch (e) {

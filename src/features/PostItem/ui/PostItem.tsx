@@ -4,7 +4,7 @@ import { Btn, ButtonTheme } from 'shared/ui/Button/Button';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import CommentIcon from '@mui/icons-material/Comment';
-import { Post } from 'features/Posts';
+import { Post } from 'entities/Posts';
 import cls from './PostItem.module.scss';
 
 interface Props {

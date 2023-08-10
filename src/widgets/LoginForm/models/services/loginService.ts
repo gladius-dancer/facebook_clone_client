@@ -22,7 +22,7 @@ export const loginService = createAsyncThunk<User, LoginSchema, { rejectValue: s
                 },
             )]);
             localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data.accessToken));
-            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(response.data.user));
+            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(response.data));
             new Notification().showSuccess('User successfully logined!');
             thunkAPI.dispatch(loaderActions.onOffLoader(false));
             return response.data;

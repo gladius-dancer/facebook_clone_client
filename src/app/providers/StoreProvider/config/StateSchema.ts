@@ -2,8 +2,8 @@ import { PageLoaderScheme } from 'shared/ui/PageLoader';
 import { RegisterSchema } from 'widgets/RegisterForm';
 import { LoginSchema } from 'widgets/LoginForm';
 import { AuthProviderSchema } from 'app/providers/AuthProvider';
-import { PostSchema } from 'features/Posts';
-import { UserSchema } from 'features/Users/models/types/UserSchema';
+import { PostSchema } from 'entities/Posts';
+import { UserSchema } from 'entities/Users/models/types/UserSchema';
 
 export interface StateSchema {
     loader: PageLoaderScheme,

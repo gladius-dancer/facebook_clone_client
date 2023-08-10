@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from 'widgets/Navbar';
 import cls from 'pages/MainPage/ui/MainPage.module.scss';
 import { LeftSidebar } from 'widgets/LeftSidebar';
-import { Posts } from 'features/Posts';
+import { Posts } from 'entities/Posts';
 import { RightSidebar } from 'widgets/RightSidebar/ui/RightSidebar';
 
 const GroupsPage = () => {
