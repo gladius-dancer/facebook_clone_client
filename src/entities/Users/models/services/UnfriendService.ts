@@ -6,7 +6,7 @@ import { User } from '../types/UserSchema';
 import { unfriendsActions } from '../slices/UnfriendSlice';
 
 export const UnfriendService = createAsyncThunk<User[]>(
-    'posts',
+    'unfriends',
     async (data, thunkAPI) => {
         try {
             thunkAPI.dispatch(loaderActions.onOffLoader(true));
@@ -19,7 +19,7 @@ export const UnfriendService = createAsyncThunk<User[]>(
                 {
                     headers,
                     params: {
-                        userId: JSON.parse(localStorage.getItem('user')).id,
+                        id: JSON.parse(localStorage.getItem('user')).id,
                     },
                 },
             );

@@ -8,7 +8,9 @@ interface Props {
     firstName: string,
     lastName: string,
     img: string,
-    ourFriends: any[]
+    ourFriends: any[],
+    addToFriend: any,
+    deleteRequest: any,
 }
 
 export const Unfriend = ({
@@ -17,6 +19,8 @@ export const Unfriend = ({
     lastName,
     img,
     ourFriends,
+    addToFriend,
+    deleteRequest,
 }:Props) => {
     const { t } = useTranslation();
 
@@ -32,8 +36,8 @@ export const Unfriend = ({
                     {lastName}
                 </h4>
                 <p>{ourFriends}</p>
-                <Button variant="contained">Добавить</Button>
-                <Button>Удалить</Button>
+                <Button variant="contained" onClick={addToFriend}>Добавить</Button>
+                <Button onClick={deleteRequest}>Удалить</Button>
             </div>
 
         </div>

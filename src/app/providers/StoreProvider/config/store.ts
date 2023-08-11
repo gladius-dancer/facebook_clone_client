@@ -4,7 +4,9 @@ import { registerReducer } from 'widgets/RegisterForm';
 import { loginReducer } from 'widgets/LoginForm';
 import { authProviderReducer } from 'app/providers/AuthProvider';
 import { postsReducer } from 'entities/Posts';
-import { unfriendsReducer, friendsReducer, familliarsReducer } from 'entities/Users';
+import {
+    unfriendsReducer, friendsReducer, familliarsReducer, friendRequestsReducer,
+} from 'entities/Users';
 import { StateSchema } from './StateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {
@@ -17,6 +19,7 @@ export function createReduxStore(initialState?: StateSchema) {
         unfriends: unfriendsReducer,
         friends: friendsReducer,
         familliars: familliarsReducer,
+        friendRequests: friendRequestsReducer,
 
     };
 

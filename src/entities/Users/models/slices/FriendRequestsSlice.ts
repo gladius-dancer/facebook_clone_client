@@ -6,8 +6,8 @@ const initialState: UserSchema = {
     loading: false,
     users: null,
 };
-export const friendsSlice = createSlice({
-    name: 'friends',
+export const friendRequestsSlice = createSlice({
+    name: 'friendRequests',
     initialState,
     reducers: {
         setUsers: (state, action: PayloadAction<User[]>) => {
@@ -16,5 +16,5 @@ export const friendsSlice = createSlice({
         getUsers: (state) => state,
     },
 });
-export const { actions: friendsActions } = friendsSlice;
-export const { reducer: friendsReducer } = friendsSlice;
+export const { actions: friendRequestsActions } = friendRequestsSlice;
+export const { reducer: friendRequestsReducer } = friendRequestsSlice;

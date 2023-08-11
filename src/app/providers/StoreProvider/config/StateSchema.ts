@@ -14,4 +14,5 @@ export interface StateSchema {
     unfriends: UserSchema,
     friends: UserSchema,
     familliars: UserSchema,
+    friendRequests: UserSchema
 }
