@@ -64,36 +64,32 @@ const FriendsPage = () => {
                     {(familliarList?.length > 0
                         || unfriendList?.length > 0)
                         && <h2 className={style.Header}>Люди, которых вы можете знать</h2> }
-                    {(familliarList?.length > 0 || unfriendList?.length > 0)
-                        && (
-                            <Users>
-                                {familliarList?.map((familliar: User) => (
-                                    <Unfriend
-                                        key={familliar.id}
-                                        img={familliar.avatar}
-                                        ourFriends={[]}
-                                        firstName={familliar.firstName}
-                                        lastName={familliar.lastName}
-                                        addToFriend={() => sendFriendRequest(familliar.id)}
-                                        // deleteRequest={() => deleteFromFamilliar(familliar.id)}
-                                        deleteRequest={() => {}}
-                                    />
-                                ))}
-                                {unfriendList?.map((user) => (
-                                    <Unfriend
-                                        key={user.id}
-                                        img={user.avatar}
-                                        ourFriends={[]}
-                                        firstName={user.firstName}
-                                        lastName={user.lastName}
-                                        addToFriend={() => sendFriendRequest(user.id)}
-                                        deleteRequest={() => deleteRequest(user.id)}
+                    <Users>
+                        {familliarList?.map((familliar: User) => (
+                            <Unfriend
+                                key={familliar.id}
+                                img={familliar.avatar}
+                                ourFriends={[]}
+                                firstName={familliar.firstName}
+                                lastName={familliar.lastName}
+                                addToFriend={() => sendFriendRequest(familliar.id)}
+                                // deleteRequest={() => deleteFromFamilliar(familliar.id)}
+                                deleteRequest={() => {}}
+                            />
+                        ))}
+                        {unfriendList?.map((user) => (
+                            <Unfriend
+                                key={user.id}
+                                img={user.avatar}
+                                ourFriends={[]}
+                                firstName={user.firstName}
+                                lastName={user.lastName}
+                                addToFriend={() => sendFriendRequest(user.id)}
+                                deleteRequest={() => deleteRequest(user.id)}
 
-                                    />
-                                ))}
-                            </Users>
-                        )}
-
+                            />
+                        ))}
+                    </Users>
                 </div>
             </div>
         </div>

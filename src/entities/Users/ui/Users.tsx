@@ -19,7 +19,7 @@ export const Users = ({ className, children }:Props) => {
         dispatch(UnfriendService());
         dispatch(FamilliarService());
         dispatch(FriendRequestsService());
-    }, []);
+    }, [dispatch]);
     const { t } = useTranslation();
 
     return (
