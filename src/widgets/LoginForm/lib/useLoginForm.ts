@@ -23,10 +23,17 @@ export const useLoginForm = () => {
             // @ts-ignore
             .then((data) => {
                 if (data.type === 'login/fulfilled') {
+                    // dispatch(socketActions.setSocket(io('http://localhost:7001')));
                     navigate('/');
                 }
             });
     };
+
+    // useEffect(() => {
+    //     if (!socket) {
+    //         socket?.emit('newUser', user?.id);
+    //     }
+    // }, [socket, user?.id]);
 
     return {
         onSubmit,

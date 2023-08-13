@@ -5,6 +5,7 @@ import { loaderActions } from 'shared/ui/PageLoader';
 import { Notification } from 'shared/ui/Notifications/lib/Notification';
 import { LoginFormType } from 'widgets/LoginForm/models/types/loginSchema';
 import { authProviderActions } from 'app/providers/AuthProvider';
+import { Socket } from 'shared/ui/Socket/Socket';
 
 export const AuthProviderService = createAsyncThunk<LoginFormType>(
     'auth',
@@ -18,6 +19,8 @@ export const AuthProviderService = createAsyncThunk<LoginFormType>(
             await localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(response.data.user));
             await thunkAPI.dispatch(authProviderActions.setUser(response.data.user));
             await thunkAPI.dispatch(loaderActions.onOffLoader(false));
+            new Socket().connect();
+
             return response.data;
         } catch (e) {
             thunkAPI.dispatch(loaderActions.onOffLoader(false));

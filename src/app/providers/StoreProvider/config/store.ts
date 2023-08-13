@@ -5,7 +5,7 @@ import { loginReducer } from 'widgets/LoginForm';
 import { authProviderReducer } from 'app/providers/AuthProvider';
 import { postsReducer } from 'entities/Posts';
 import {
-    unfriendsReducer, friendsReducer, familliarsReducer, friendRequestsReducer,
+    familliarsReducer, friendRequestsReducer, friendsReducer, unfriendsReducer,
 } from 'entities/Users';
 import { StateSchema } from './StateSchema';
 
