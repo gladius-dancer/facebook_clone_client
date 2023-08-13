@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 export const AuthProvider = ({ children }: any) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isAuth = useSelector(getIsAuth);
 
     useEffect(() => {
         dispatch(AuthProviderService())
@@ -16,7 +15,7 @@ export const AuthProvider = ({ children }: any) => {
                     navigate('/auth');
                 }
             });
-    }, [dispatch, navigate]);
+    }, [navigate]);
 
     return (
         // eslint-disable-next-line react/jsx-no-useless-fragment

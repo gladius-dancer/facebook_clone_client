@@ -6,8 +6,13 @@ import {
     FamilliarService, friendRequestsActions, UnfriendService,
 } from 'entities/Users';
 
+// import socket from 'shared/ui/Socket/Socket';
+import { io } from 'socket.io-client';
+import { CURRENT_USER_KEY } from 'shared/const/localstorage';
 import { User } from '../types/UserSchema';
 import { friendsActions } from '../slices/FriendSlice';
+
+const socket = io('http://localhost:7001');
 
 export const FriendService = createAsyncThunk<User[]>(
     'friends',
@@ -121,6 +126,15 @@ export const SendFriendRequestService = createAsyncThunk<User[], string>(
             thunkAPI.dispatch(UnfriendService());
             thunkAPI.dispatch(FamilliarService());
             thunkAPI.dispatch(FriendRequestsService());
+            socket.emit(
+                'sendNotification',
+                {
+                    senderId: JSON.parse(localStorage.getItem(CURRENT_USER_KEY))?.id,
+                    receiverId: '64d66b2969e28f52c108b48b',
+                    type: 'friendRequest',
+                },
+            );
+
             return response.data;
         } catch (e) {
             thunkAPI.dispatch(loaderActions.onOffLoader(false));

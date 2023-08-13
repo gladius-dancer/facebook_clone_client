@@ -13,7 +13,6 @@ import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import VideogameAssetOutlinedIcon from '@mui/icons-material/VideogameAssetOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
-
 import { Input } from 'shared/ui/Input/Input';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
@@ -23,7 +22,11 @@ import { getUserData, loginActions } from 'widgets/LoginForm';
 import { LogoutService } from 'app/providers/AuthProvider/models/services/AuthProviderService';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { getIsAuth } from 'app/providers/AuthProvider';
+// import socket from 'shared/ui/Socket/Socket';
+import { io } from 'socket.io-client';
 import cls from './Navbar.module.scss';
+
+const socket = io('http://localhost:7001');
 
 interface NavbarProps {
     className?: string;
@@ -40,11 +43,13 @@ export const Navbar = ({ className }: NavbarProps) => {
     const AccountPopup = useRef(null);
     const Account = useRef(null);
     const isAuth = useSelector(getIsAuth).user;
+    const [notify, setNotify] = useState([]);
 
     const logout = async () => {
         await dispatch(LogoutService());
         await dispatch(loginActions.logout);
         navigate('/auth');
+        window.location.reload();
     };
     const handleClick = (event: MouseEvent) => {
         const targetElement = event.target;
@@ -58,6 +63,11 @@ export const Navbar = ({ className }: NavbarProps) => {
             setPopup((prev) => !prev);
         }
     };
+
+    useEffect(() => {
+        console.log('Hello');
+        socket.on('getNotification', (data: any) => setNotify(data));
+    }, []);
 
     useEffect(() => {
         document.addEventListener('click', handleClick);
@@ -128,6 +138,13 @@ export const Navbar = ({ className }: NavbarProps) => {
                 </li>
                 <li>
                     <NotificationsActiveIcon className={classnames(cls.TabIcon)} fontSize="medium" />
+                    <div className={cls.Notify}>
+                        {notify.map((item) => (
+                            <div>
+                                <p>{item?.sender}</p>
+                            </div>
+                        ))}
+                    </div>
                 </li>
                 <li ref={Account}>
                     {isAuth?.avatar?.length > 0
