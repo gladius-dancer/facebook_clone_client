@@ -22,11 +22,11 @@ import { getUserData, loginActions } from 'widgets/LoginForm';
 import { LogoutService } from 'app/providers/AuthProvider/models/services/AuthProviderService';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { getIsAuth } from 'app/providers/AuthProvider';
-// import socket from 'shared/ui/Socket/Socket';
+import socket from 'shared/ui/Socket/Socket';
 import { io } from 'socket.io-client';
 import cls from './Navbar.module.scss';
 
-const socket = io('http://localhost:7001');
+// const socket = io('http://localhost:7001');
 
 interface NavbarProps {
     className?: string;
@@ -65,9 +65,10 @@ export const Navbar = ({ className }: NavbarProps) => {
     };
 
     useEffect(() => {
+        // socket.on('getNotification', (data: any) => setNotify(data));
+        socket.socket.on('getNotification', (data: any) => console.log(data));
         console.log('Hello');
-        socket.on('getNotification', (data: any) => setNotify(data));
-    }, []);
+    }, [socket]);
 
     useEffect(() => {
         document.addEventListener('click', handleClick);

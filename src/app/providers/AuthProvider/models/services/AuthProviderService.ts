@@ -6,9 +6,9 @@ import { Notification } from 'shared/ui/Notifications/lib/Notification';
 import { LoginFormType } from 'widgets/LoginForm/models/types/loginSchema';
 import { authProviderActions } from 'app/providers/AuthProvider';
 import { io } from 'socket.io-client';
-// import socket from 'shared/ui/Socket/Socket';
+import socket from 'shared/ui/Socket/Socket';
 
-const socket = io('http://localhost:7001');
+// const socket = io('http://localhost:7001');
 
 export const AuthProviderService = createAsyncThunk<LoginFormType>(
     'auth',
@@ -22,7 +22,7 @@ export const AuthProviderService = createAsyncThunk<LoginFormType>(
             await localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(response.data.user));
             await thunkAPI.dispatch(authProviderActions.setUser(response.data.user));
             await thunkAPI.dispatch(loaderActions.onOffLoader(false));
-            socket.connect();
+            socket.socket.emit('newUser', JSON.parse(localStorage.getItem(CURRENT_USER_KEY))?.id);
 
             return response.data;
         } catch (e) {
