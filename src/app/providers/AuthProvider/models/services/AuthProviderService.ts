@@ -5,10 +5,7 @@ import { loaderActions } from 'shared/ui/PageLoader';
 import { Notification } from 'shared/ui/Notifications/lib/Notification';
 import { LoginFormType } from 'widgets/LoginForm/models/types/loginSchema';
 import { authProviderActions } from 'app/providers/AuthProvider';
-import { io } from 'socket.io-client';
 import socket from 'shared/ui/Socket/Socket';
-
-// const socket = io('http://localhost:7001');
 
 export const AuthProviderService = createAsyncThunk<LoginFormType>(
     'auth',

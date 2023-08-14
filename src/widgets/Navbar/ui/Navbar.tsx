@@ -18,15 +18,12 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserData, loginActions } from 'widgets/LoginForm';
+import { loginActions } from 'widgets/LoginForm';
 import { LogoutService } from 'app/providers/AuthProvider/models/services/AuthProviderService';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { getIsAuth } from 'app/providers/AuthProvider';
 import socket from 'shared/ui/Socket/Socket';
-import { io } from 'socket.io-client';
 import cls from './Navbar.module.scss';
-
-// const socket = io('http://localhost:7001');
 
 interface NavbarProps {
     className?: string;
@@ -37,7 +34,6 @@ export const Navbar = ({ className }: NavbarProps) => {
     const [popup, setPopup] = useState(false);
     const location = useLocation();
     const [currentTab, setCurrentTab] = useState(`${location.pathname}`);
-    const userData = useSelector(getUserData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const AccountPopup = useRef(null);
@@ -65,9 +61,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     };
 
     useEffect(() => {
-        // socket.on('getNotification', (data: any) => setNotify(data));
-        socket.socket.on('getNotification', (data: any) => console.log(data));
-        console.log('Hello');
+        socket.socket.on('getNotification', (data: any) => setNotify((prev) => [...prev, data]));
     }, [socket]);
 
     useEffect(() => {
@@ -140,9 +134,9 @@ export const Navbar = ({ className }: NavbarProps) => {
                 <li>
                     <NotificationsActiveIcon className={classnames(cls.TabIcon)} fontSize="medium" />
                     <div className={cls.Notify}>
-                        {notify.map((item) => (
-                            <div>
-                                <p>{item?.sender}</p>
+                        {notify?.map((item) => (
+                            <div key={Math.floor(Math.random() * 10000)}>
+                                <p>{item?.senderName}</p>
                             </div>
                         ))}
                     </div>

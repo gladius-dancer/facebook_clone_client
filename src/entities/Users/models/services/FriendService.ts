@@ -5,14 +5,10 @@ import { Notification } from 'shared/ui/Notifications/lib/Notification';
 import {
     FamilliarService, friendRequestsActions, UnfriendService,
 } from 'entities/Users';
-
 import socket from 'shared/ui/Socket/Socket';
-import { io } from 'socket.io-client';
 import { CURRENT_USER_KEY } from 'shared/const/localstorage';
 import { User } from '../types/UserSchema';
 import { friendsActions } from '../slices/FriendSlice';
-
-// const socket = io('http://localhost:7001');
 
 export const FriendService = createAsyncThunk<User[]>(
     'friends',
