@@ -6,6 +6,10 @@ import { Notification } from 'shared/ui/Notifications/lib/Notification';
 import { LoginFormType } from 'widgets/LoginForm/models/types/loginSchema';
 import { authProviderActions } from 'app/providers/AuthProvider';
 import socket from 'shared/ui/Socket/Socket';
+import {
+    FamilliarService, FriendRequestsService, FriendService, UnfriendService,
+} from 'entities/Users';
+import { NotificationService } from 'widgets/Navbar/models/services/NotificationService';
 
 export const AuthProviderService = createAsyncThunk<LoginFormType>(
     'auth',
@@ -20,7 +24,12 @@ export const AuthProviderService = createAsyncThunk<LoginFormType>(
             await thunkAPI.dispatch(authProviderActions.setUser(response.data.user));
             await thunkAPI.dispatch(loaderActions.onOffLoader(false));
             socket.socket.emit('newUser', JSON.parse(localStorage.getItem(CURRENT_USER_KEY))?.id);
-
+            thunkAPI.dispatch(FriendService());
+            thunkAPI.dispatch(UnfriendService());
+            thunkAPI.dispatch(FamilliarService());
+            thunkAPI.dispatch(FriendRequestsService());
+            thunkAPI.dispatch(FriendRequestsService());
+            thunkAPI.dispatch(NotificationService());
             return response.data;
         } catch (e) {
             thunkAPI.dispatch(loaderActions.onOffLoader(false));

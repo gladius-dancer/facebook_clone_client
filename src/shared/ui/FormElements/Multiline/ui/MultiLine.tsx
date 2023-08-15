@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import { MultilineType } from '../type/MultilineType';
 
 export const MultiLine = ({
-    key,
     name,
     control,
     error,
@@ -12,9 +11,10 @@ export const MultiLine = ({
     size,
     placeholder,
     className,
+    maxRows,
 }: MultilineType) => (
     <Controller
-        key={key}
+        key={name}
         name={name}
         control={control}
         defaultValue=""
@@ -32,7 +32,7 @@ export const MultiLine = ({
                 label={label}
                 variant="outlined"
                 multiline
-                rows={3}
+                maxRows={maxRows}
                 placeholder={placeholder}
                 className={className}
             />

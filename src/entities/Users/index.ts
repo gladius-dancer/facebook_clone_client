@@ -19,3 +19,4 @@ export { FriendRequestService } from './models/services/FriendService';
 export { friendRequests } from './models/selectors/FriendRequests';
 export { familliars } from './models/selectors/Familliars';
 export { unfriends } from './models/selectors/Unfriends';
+export { friends } from './models/selectors/Friends';

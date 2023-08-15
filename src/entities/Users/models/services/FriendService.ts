@@ -118,7 +118,6 @@ export const SendFriendRequestService = createAsyncThunk<User[], string>(
             );
             thunkAPI.dispatch(friendsActions.setUsers(response.data));
             thunkAPI.dispatch(loaderActions.onOffLoader(false));
-            thunkAPI.dispatch(FriendService());
             thunkAPI.dispatch(UnfriendService());
             thunkAPI.dispatch(FamilliarService());
             thunkAPI.dispatch(FriendRequestsService());
@@ -161,8 +160,6 @@ export const AddToFriendService = createAsyncThunk<User[], string>(
             thunkAPI.dispatch(friendsActions.setUsers(response.data));
             thunkAPI.dispatch(loaderActions.onOffLoader(false));
             thunkAPI.dispatch(FriendService());
-            thunkAPI.dispatch(UnfriendService());
-            thunkAPI.dispatch(FamilliarService());
             thunkAPI.dispatch(FriendRequestsService());
             return response.data;
         } catch (e) {

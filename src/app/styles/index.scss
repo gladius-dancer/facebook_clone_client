@@ -34,3 +34,12 @@
 .hide {
     visibility: hidden;
 }
+
+.MuiChip-deleteIcon {
+    display: flex;
+    gap: 10px;
+    font-size: 12px !important;
+    span{
+        padding-top: 3px;
+    }
+}

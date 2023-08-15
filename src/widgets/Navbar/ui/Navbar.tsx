@@ -47,7 +47,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     const Account = useRef(null);
     const Notify = useRef(null);
     const isAuth = useSelector(getIsAuth).user;
-    const notificationList = useSelector(notifications).notifications;
+    const notificationList = useSelector(notifications)?.notifications;
 
     const logout = async () => {
         await dispatch(LogoutService());
@@ -85,7 +85,6 @@ export const Navbar = ({ className }: NavbarProps) => {
     }, [socket]);
 
     useEffect(() => {
-        dispatch(NotificationService());
         document.addEventListener('click', handleClick);
         return () => {
             document.removeEventListener('click', handleClick);
@@ -153,7 +152,7 @@ export const Navbar = ({ className }: NavbarProps) => {
                     <MarkUnreadChatAltIcon className={classnames(cls.TabIcon)} fontSize="medium" />
                 </li>
                 <li className={cls.Notify}>
-                    <Badge color="secondary" badgeContent={notificationList.length}>
+                    <Badge color="secondary" badgeContent={notificationList?.length}>
                         <NotificationsActiveIcon ref={Notify} className={classnames(cls.TabIcon)} fontSize="medium" />
                     </Badge>
                     <div
@@ -188,7 +187,7 @@ export const Navbar = ({ className }: NavbarProps) => {
                                 );
                             }
                         })}
-                        { notificationList.length === 0 && (<div className={cls.NotifyListItem}>Нет уведомлений</div>) }
+                        { notificationList?.length === 0 && (<div className={cls.NotifyListItem}>Нет уведомлений</div>) }
                     </div>
                 </li>
                 <li ref={Account}>

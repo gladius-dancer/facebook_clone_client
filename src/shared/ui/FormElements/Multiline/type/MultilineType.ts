@@ -1,11 +1,11 @@
 export interface MultilineType {
-  key: string;
   name: string;
   control: any;
   error?: string;
   label?: string;
   onChange?: any;
   size?: 'small' | 'medium' | undefined;
-  placeholder: string;
-  className: string;
+  placeholder?: string;
+  className?: string;
+  maxRows?: number;
 }

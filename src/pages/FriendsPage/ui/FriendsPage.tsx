@@ -15,6 +15,7 @@ import {
 } from 'entities/Users';
 import { User, UserSchema } from 'entities/Users/models/types/UserSchema';
 import { SendFriendRequestService } from 'entities/Users/models/services/FriendService';
+import { RightSidebar } from 'widgets/RightSidebar/ui/RightSidebar';
 import style from './FriendsPage.module.scss';
 
 const FriendsPage = () => {
@@ -90,6 +91,9 @@ const FriendsPage = () => {
                             />
                         ))}
                     </Users>
+                </div>
+                <div className={cls.MainPageRight}>
+                    <RightSidebar />
                 </div>
             </div>
         </div>
