@@ -23,23 +23,31 @@ import { LogoutService } from 'app/providers/AuthProvider/models/services/AuthPr
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { getIsAuth } from 'app/providers/AuthProvider';
 import socket from 'shared/ui/Socket/Socket';
+import { DeleteNotificationService, NotificationService } from 'widgets/Navbar/models/services/NotificationService';
+import { notificationActions } from 'widgets/Navbar/models/slices/NotificationSlice';
+import { Badge } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import cls from './Navbar.module.scss';
+import { notifications } from '../models/selectors/Notifications';
 
 interface NavbarProps {
     className?: string;
 }
-
 export const Navbar = ({ className }: NavbarProps) => {
     const { t } = useTranslation();
     const [popup, setPopup] = useState(false);
+    const [notify, setNotify] = useState(false);
     const location = useLocation();
     const [currentTab, setCurrentTab] = useState(`${location.pathname}`);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const AccountPopup = useRef(null);
+    const NotifyPopup = useRef(null);
     const Account = useRef(null);
+    const Notify = useRef(null);
     const isAuth = useSelector(getIsAuth).user;
-    const [notify, setNotify] = useState([]);
+    const notificationList = useSelector(notifications).notifications;
 
     const logout = async () => {
         await dispatch(LogoutService());
@@ -51,6 +59,8 @@ export const Navbar = ({ className }: NavbarProps) => {
         const targetElement = event.target;
         const containBody = AccountPopup.current.contains(targetElement);
         const containAccountIcon = Account.current.contains(targetElement);
+        const notifyBody = NotifyPopup.current.contains(targetElement);
+        const notifyIcon = Notify.current.contains(targetElement);
 
         if (!containBody && !containAccountIcon) {
             setPopup((prev) => false);
@@ -58,13 +68,24 @@ export const Navbar = ({ className }: NavbarProps) => {
         if (containAccountIcon) {
             setPopup((prev) => !prev);
         }
+        if (!notifyBody && !notifyIcon) {
+            setNotify((prev) => false);
+        }
+        if (notifyIcon) {
+            setNotify((prev) => !prev);
+        }
+    };
+
+    const deleteNotify = (notificationId: string) => {
+        dispatch(DeleteNotificationService(notificationId));
     };
 
     useEffect(() => {
-        socket.socket.on('getNotification', (data: any) => setNotify((prev) => [...prev, data]));
+        socket.socket.on('getNotification', (data: any) => dispatch(notificationActions.setNotifications(data)));
     }, [socket]);
 
     useEffect(() => {
+        dispatch(NotificationService());
         document.addEventListener('click', handleClick);
         return () => {
             document.removeEventListener('click', handleClick);
@@ -131,14 +152,43 @@ export const Navbar = ({ className }: NavbarProps) => {
                 <li>
                     <MarkUnreadChatAltIcon className={classnames(cls.TabIcon)} fontSize="medium" />
                 </li>
-                <li>
-                    <NotificationsActiveIcon className={classnames(cls.TabIcon)} fontSize="medium" />
-                    <div className={cls.Notify}>
-                        {notify?.map((item) => (
-                            <div key={Math.floor(Math.random() * 10000)}>
-                                <p>{item?.senderName}</p>
-                            </div>
-                        ))}
+                <li className={cls.Notify}>
+                    <Badge color="secondary" badgeContent={notificationList.length}>
+                        <NotificationsActiveIcon ref={Notify} className={classnames(cls.TabIcon)} fontSize="medium" />
+                    </Badge>
+                    <div
+                        className={classnames(cls.NotifyList, notify ? 'visible' : 'hide')}
+                        ref={NotifyPopup}
+                    >
+                        {notificationList?.map((item) => {
+                            if (item.type === 'friendRequest') {
+                                return (
+                                    <div className={cls.NotifyListItem} key={item.id}>
+                                        <AppLink to="/friends">
+                                            {item?.avatar?.length > 0
+                                                ? (
+                                                    <span className={cls.IconWrap}>
+                                                        <img src={item?.avatar} alt="" />
+                                                    </span>
+                                                )
+                                                : (
+                                                    <span className={cls.IconWrap}>
+                                                        <AccountCircleIcon
+                                                            className={classnames(cls.TabIcon)}
+                                                            fontSize="medium"
+                                                        />
+                                                    </span>
+                                                )}
+                                            {item?.sender}
+                                            {' '}
+                                            отправил(а) запрос на дружбу
+                                        </AppLink>
+                                        <IconButton onClick={() => deleteNotify(item.id)}><CloseIcon /></IconButton>
+                                    </div>
+                                );
+                            }
+                        })}
+                        { notificationList.length === 0 && (<div className={cls.NotifyListItem}>Нет уведомлений</div>) }
                     </div>
                 </li>
                 <li ref={Account}>

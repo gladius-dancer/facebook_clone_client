@@ -126,7 +126,7 @@ export const SendFriendRequestService = createAsyncThunk<User[], string>(
                 'sendNotification',
                 {
                     senderId: JSON.parse(localStorage.getItem(CURRENT_USER_KEY))?.id,
-                    receiverId: '64d66b2969e28f52c108b48b',
+                    receiverId: id,
                     type: 'friendRequest',
                 },
             );

@@ -7,6 +7,7 @@ import { postsReducer } from 'entities/Posts';
 import {
     familliarsReducer, friendRequestsReducer, friendsReducer, unfriendsReducer,
 } from 'entities/Users';
+import { notificationReducer } from 'widgets/Navbar/models/slices/NotificationSlice';
 import { StateSchema } from './StateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {
@@ -20,6 +21,7 @@ export function createReduxStore(initialState?: StateSchema) {
         friends: friendsReducer,
         familliars: familliarsReducer,
         friendRequests: friendRequestsReducer,
+        notifications: notificationReducer,
 
     };
 
