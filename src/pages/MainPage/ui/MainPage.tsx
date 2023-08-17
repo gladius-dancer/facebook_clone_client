@@ -10,16 +10,6 @@ import cls from './MainPage.module.scss';
 
 const MainPage = () => {
     const { t } = useTranslation();
-    const [value, setValue] = useState('');
-    const dispatch = useDispatch();
-
-    const onChange = (val: string) => {
-        setValue(val);
-    };
-
-    useEffect(() => {
-        dispatch(PostsService());
-    });
 
     return (
         <div className={cls.MainPage}>

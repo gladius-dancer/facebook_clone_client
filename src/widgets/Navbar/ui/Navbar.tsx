@@ -186,6 +186,32 @@ export const Navbar = ({ className }: NavbarProps) => {
                                     </div>
                                 );
                             }
+                            if (item.type === 'like') {
+                                return (
+                                    <div className={cls.NotifyListItem} key={item.id}>
+                                        <AppLink to="/">
+                                            {item?.avatar?.length > 0
+                                                ? (
+                                                    <span className={cls.IconWrap}>
+                                                        <img src={item?.avatar} alt="" />
+                                                    </span>
+                                                )
+                                                : (
+                                                    <span className={cls.IconWrap}>
+                                                        <AccountCircleIcon
+                                                            className={classnames(cls.TabIcon)}
+                                                            fontSize="medium"
+                                                        />
+                                                    </span>
+                                                )}
+                                            {item?.sender}
+                                            {' '}
+                                            нравится ваш пост
+                                        </AppLink>
+                                        <IconButton onClick={() => deleteNotify(item.id)}><CloseIcon /></IconButton>
+                                    </div>
+                                );
+                            }
                         })}
                         { notificationList?.length === 0 && (<div className={cls.NotifyListItem}>Нет уведомлений</div>) }
                     </div>

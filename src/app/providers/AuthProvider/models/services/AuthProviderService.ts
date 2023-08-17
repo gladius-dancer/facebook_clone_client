@@ -10,6 +10,7 @@ import {
     FamilliarService, FriendRequestsService, FriendService, UnfriendService,
 } from 'entities/Users';
 import { NotificationService } from 'widgets/Navbar/models/services/NotificationService';
+import { PostsService } from 'entities/Posts/models/services/PostsServices';
 
 export const AuthProviderService = createAsyncThunk<LoginFormType>(
     'auth',
@@ -24,6 +25,7 @@ export const AuthProviderService = createAsyncThunk<LoginFormType>(
             await thunkAPI.dispatch(authProviderActions.setUser(response.data.user));
             await thunkAPI.dispatch(loaderActions.onOffLoader(false));
             socket.socket.emit('newUser', JSON.parse(localStorage.getItem(CURRENT_USER_KEY))?.id);
+            thunkAPI.dispatch(PostsService());
             thunkAPI.dispatch(FriendService());
             thunkAPI.dispatch(UnfriendService());
             thunkAPI.dispatch(FamilliarService());

@@ -1,0 +1,112 @@
+.Sidebar {
+    height: 100%;
+    width: var(--sidebar-width);
+    background: var(--page-bg-color);
+    position: fixed;
+    left: 0;
+    transition: width 0.3s;
+    //padding-left: 20px;
+    margin-top: var(--navbar-height);
+}
+
+.collapseBtn {
+    position: absolute;
+    right: -32px;
+    bottom: 32px;
+}
+
+.SidebarTitle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+
+.SidebarItems {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.SidebarItem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--body-text);
+    padding-left: 5px;
+    cursor: pointer;
+    padding-left: 20px;
+
+    svg {
+        color: #385898;
+    }
+}
+
+.ActiveItem{
+    background: rgba(173, 171, 171, 0.29);
+}
+
+.item {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    margin-left: 10px;
+    opacity: 1;
+}
+
+.icon {
+    fill: var(--inverted-primary-color);
+}
+
+.collapsed {
+    width: var(--sidebar-width-collapsed);
+
+    .switchers {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .lang {
+        margin-left: 0;
+    }
+
+    .link {
+        opacity: 0;
+        transition: 0.2s opacity;
+        width: 0;
+    }
+}
+
+.IconWrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--nav-bg-color);
+    position: relative;
+    overflow: hidden;
+
+    img{
+        width: 100%;
+        height: auto;
+
+    }
+
+    svg {
+        color: var(--inverted-icon-color);
+    }
+
+    &:hover {
+        background: var(--tab-item-icon-hover);
+    }
+}

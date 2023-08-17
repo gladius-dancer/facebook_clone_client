@@ -5,7 +5,7 @@ import { getPosts } from 'entities/Posts';
 import { AddPost } from 'features/AddPost/ui/AddPost';
 import { ModalComponent } from 'shared/ui/ModalComponent/ui/ModalComponent';
 import { AddPostForm } from 'widgets/AddPostForm/ui/AddPostForm';
-import { useAddPost } from 'entities/Posts/lig/useAddPosts';
+import { useAddPost } from 'entities/Posts/lib/useAddPosts';
 import styles from './Posts.module.scss';
 
 interface Props {

@@ -11,6 +11,21 @@ export const postSlice = createSlice({
         setPosts: (state, action: PayloadAction<PostSchema>) => {
             state.posts = action.payload.posts;
         },
+        likePost: (state, action: any) => {
+            state.posts.map((post) => {
+                if (post._id === action.payload.postId) {
+                    post.likes.push(action.payload.userId);
+                }
+            });
+        },
+
+        unlikePost: (state, action: any) => {
+            state.posts.map((post) => {
+                if (post._id === action.payload.postId) {
+                    post.likes = post.likes.filter((item) => item !== action.payload.userId);
+                }
+            });
+        },
         getPosts: (state) => state,
     },
 });

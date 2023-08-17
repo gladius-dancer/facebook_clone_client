@@ -3,7 +3,7 @@ export type Post = {
     text: string,
     file: string,
     date: string,
-    likes: number,
+    likes: string[],
     type: string,
     idFile: string,
     pathToFile: string,
@@ -15,7 +15,7 @@ export type Post = {
 }
 
 export type PostSchema = {
-    posts: Post[]
+    posts: Post[];
 }
 
 export type AddPostSchema = {
