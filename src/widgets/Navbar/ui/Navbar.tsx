@@ -28,6 +28,7 @@ import { notificationActions } from 'widgets/Navbar/models/slices/NotificationSl
 import { Badge } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
 import cls from './Navbar.module.scss';
 import { notifications } from '../models/selectors/Notifications';
 
@@ -103,7 +104,7 @@ export const Navbar = ({ className }: NavbarProps) => {
 
                 <Input
                     key="search"
-                    placeholder="Поиск на Facebook"
+                    placeholder={t('Поиск на Facebook')}
                     className={cls.Search}
                 />
             </div>
@@ -145,6 +146,9 @@ export const Navbar = ({ className }: NavbarProps) => {
                 </AppLink>
             </div>
             <ul className={cls.NavbarRight}>
+                <li>
+                    <IconButton><LangSwitcher /></IconButton>
+                </li>
                 <li>
                     <AppsIcon className={classnames(cls.TabIcon)} fontSize="medium" />
                 </li>
