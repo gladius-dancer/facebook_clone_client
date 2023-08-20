@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import classnames from 'classnames';
@@ -32,6 +32,8 @@ export const RightSidebar = ({ className }: SidebarProps) => {
     const currentUser = useSelector(getIsAuth).user;
     const contacts = useSelector(friends);
     const [history, setHistory] = useState([]);
+    const chatOuter = useRef<HTMLDivElement | null>(null);
+    const chatInner = useRef<HTMLDivElement | null>(null);
 
     const schema = yup.object().shape({
         message: yup.string().required(),
@@ -42,6 +44,7 @@ export const RightSidebar = ({ className }: SidebarProps) => {
         handleSubmit,
         control,
         formState: { errors },
+        reset,
     } = methods;
 
     // const fileName = watch('file');
@@ -50,13 +53,14 @@ export const RightSidebar = ({ className }: SidebarProps) => {
         socket.socket.emit('send_message', {
             message: data.message, userId: currentUser?.id, reciverId: chatUser?.id, __createdtime__: Date.now(),
         });
-        console.log(data);
+        reset();
     };
 
-    const openChat = (id: string) => {
-        setChat(true);
-        setChatUser(contacts?.filter((item) => item.id === id)[0]);
-        socket.socket.emit('join_room', { userId: currentUser.id, reciverId: chatUser?.id });
+    const openChat = async (id: string) => {
+        await setChat(true);
+        const user = await contacts?.filter((item) => item.id === id);
+        setChatUser(user[0]);
+        socket.socket.emit('join_room', { userId: currentUser.id, reciverId: user[0]?.id });
     };
 
     const closeChat = () => {
@@ -64,22 +68,35 @@ export const RightSidebar = ({ className }: SidebarProps) => {
         socket.socket.emit('leave_room', { userId: currentUser.id, reciverId: chatUser?.id });
     };
 
+    const scrollBottom = () => {
+        const outerDivHeight = chatOuter.current?.clientHeight;
+        const innerDivHeight = chatInner.current?.clientHeight;
+        chatOuter.current?.scrollTo({
+            top: innerDivHeight! - outerDivHeight!,
+            left: 0,
+            behavior: 'smooth',
+        });
+    };
+
     useEffect(() => {
         socket.socket.on('receive_message', (data: any) => {
-            console.log(data);
             setHistory((state) => [
                 ...state,
                 {
                     message: data.message,
-                    username: data.username,
+                    username: data.userId,
                     __createdtime__: data.__createdtime__,
                 },
             ]);
         });
-
         // Remove event listener on component unmount
         return () => socket.socket.off('receive_message');
-    }, [socket]);
+    }, []);
+
+    useEffect(() => {
+        scrollBottom();
+        console.log('Scroolll');
+    }, [history]);
 
     useEffect(() => {
         socket.socket.on('last_messages', (data: any) => setHistory(data));
@@ -131,19 +148,20 @@ export const RightSidebar = ({ className }: SidebarProps) => {
                                 )}
                             <span>{`${chatUser?.firstName} ${chatUser?.lastName}`}</span>
                         </div>
-                        <div className={cls.chatArea}>
-                            <div className={cls.messages}>
-                                {history.map((message) => {
-                                    if (message.userId === currentUser.id) {
+                        <div className={cls.chatArea} ref={chatOuter}>
+                            <div className={cls.messages} ref={chatInner}>
+                                {history?.map((message) => {
+                                    if (message.username !== currentUser.id) {
                                         return (
                                             <Chip
                                                 key={message.id}
                                                 sx={{
                                                     height: 'auto',
-                                                    width: '180px',
+                                                    width: '220px',
                                                     padding: '5px',
                                                     flexDirection: 'column',
                                                     alignItems: 'flex-end',
+                                                    overflowWrap: 'break-word',
                                                     '& .MuiChip-label': {
                                                         display: 'block',
                                                         whiteSpace: 'normal',
@@ -155,24 +173,34 @@ export const RightSidebar = ({ className }: SidebarProps) => {
                                                 }}
                                                 onDelete={() => {
                                                 }}
-                                                deleteIcon={<span>08:00</span>}
+                                                deleteIcon={(
+                                                    <span>
+                                                        {new Date(message.__createdtime__)
+                                                            .toLocaleTimeString(
+                                                                navigator.language,
+                                                                { hour: '2-digit', minute: '2-digit' },
+                                                            )}
+                                                    </span>
+                                                )}
                                                 className={cls.friend}
                                             />
                                         );
                                     }
-                                    if (message.userId !== currentUser.id) {
+                                    if (message.username === currentUser.id) {
                                         return (
                                             <Chip
                                                 key={message.id}
                                                 sx={{
                                                     height: 'auto',
-                                                    width: '180px',
+                                                    width: '220px',
                                                     padding: '5px',
                                                     flexDirection: 'column',
                                                     alignItems: 'flex-end',
+                                                    overflowWrap: 'break-word',
                                                     '& .MuiChip-label': {
                                                         display: 'block',
                                                         whiteSpace: 'normal',
+                                                        overflowWrap: 'anywhere',
                                                     },
                                                 }}
                                                 label={message.message}
@@ -183,7 +211,11 @@ export const RightSidebar = ({ className }: SidebarProps) => {
                                                 deleteIcon={(
                                                     <span>
                                                         <span>
-                                                            09:00
+                                                            {new Date(message.__createdtime__)
+                                                                .toLocaleTimeString(
+                                                                    navigator.language,
+                                                                    { hour: '2-digit', minute: '2-digit' },
+                                                                )}
                                                         </span>
                                                         <DoneIcon />
                                                     </span>
@@ -198,13 +230,12 @@ export const RightSidebar = ({ className }: SidebarProps) => {
                         </div>
                         <div className={cls.sendForm}>
                             <form onSubmit={handleSubmit(onSubmit)}>
-                                <MultiLine control={control} name="message" size="small" maxRows={4} />
+                                <MultiLine control={control} name="message" size="small" maxRows={4} className={cls.chatText} />
                                 <IconButton type="submit"><SendIcon /></IconButton>
                             </form>
                         </div>
                     </div>
                 )}
-
             </div>
         </div>
     );
