@@ -99,10 +99,7 @@ export const RightSidebar = ({ className }: SidebarProps) => {
                     state[Object.keys(state)[Object.keys(state).length - 1]].push({
                         message: data.message,
                         username: data.userId,
-                        __createdTime__: new Date(data.__createdTime__).toLocaleTimeString(
-                            navigator.language,
-                            { hour: '2-digit', minute: '2-digit' },
-                        ),
+                        __createdTime__: data.__createdTime__,
                         __createdDate__: new Date(data.__createdTime__).toLocaleDateString(),
 
                     });
@@ -115,10 +112,7 @@ export const RightSidebar = ({ className }: SidebarProps) => {
                     [group]: [{
                         message: data.message,
                         username: data.userId,
-                        __createdTime__: new Date(data.__createdTime__).toLocaleTimeString(
-                            navigator.language,
-                            { hour: '2-digit', minute: '2-digit' },
-                        ),
+                        __createdTime__: data.__createdTime__,
                         __createdDate__: new Date(data.__createdTime__).toLocaleDateString(),
                     }],
                 };
@@ -222,7 +216,10 @@ export const RightSidebar = ({ className }: SidebarProps) => {
                                                         onDelete={() => {}}
                                                         deleteIcon={(
                                                             <span>
-                                                                { message.__createdTime__ }
+                                                                { new Date(message.__createdTime__).toLocaleTimeString(
+                                                                    navigator.language,
+                                                                    { hour: '2-digit', minute: '2-digit' },
+                                                                )}
                                                             </span>
                                                         )}
                                                         className={cls.friend}
@@ -252,7 +249,10 @@ export const RightSidebar = ({ className }: SidebarProps) => {
                                                         deleteIcon={(
                                                             <span>
                                                                 <span>
-                                                                    { message.__createdTime__ }
+                                                                    { new Date(message.__createdTime__).toLocaleTimeString(
+                                                                        navigator.language,
+                                                                        { hour: '2-digit', minute: '2-digit' },
+                                                                    )}
                                                                 </span>
                                                                 <DoneIcon />
                                                             </span>
